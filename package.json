@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "update": "node scripts/update-predictions.mjs",
-    "serve": "node scripts/serve.mjs"
+    "serve": "node scripts/serve.mjs",
+    "check": "node --check scripts/update-predictions.mjs && node --check scripts/serve.mjs && node --check public/app.js"
   }
 }

@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, rename, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -30,7 +30,11 @@ async function getLeague(code, seasonKey) {
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
       const response = await fetch(urlFor(seasonKey, code), { headers: { 'User-Agent': 'PitchProbability/0.1' } });
-      if (response.ok) return response.json();
+      if (response.ok) {
+        const payload = await response.json();
+        if (!Array.isArray(payload.matches)) throw new Error(`${code} ${seasonKey}: source returned no match list`);
+        return payload;
+      }
       lastError = new Error(`${code} ${seasonKey}: HTTP ${response.status}`);
       if (response.status !== 429 && response.status < 500) throw lastError;
     } catch (error) { lastError = error; }
@@ -79,14 +83,19 @@ function buildStats(matches, asOf) {
     ratings.set(match.team2, awayRating - k * (actualHome - expectedHome));
   }
   const form = new Map();
+  const lastPlayed = new Map();
   const getForm = (name) => form.get(name) ?? { scored: 0, conceded: 0, games: 0 };
+  for (const match of completed) {
+    lastPlayed.set(match.team1, match.date);
+    lastPlayed.set(match.team2, match.date);
+  }
   for (const match of [...completed].reverse()) {
     const [home, away] = finalScore(match);
     const h = getForm(match.team1), a = getForm(match.team2);
     if (h.games < 6) { h.scored += home; h.conceded += away; h.games += 1; form.set(match.team1, h); }
     if (a.games < 6) { a.scored += away; a.conceded += home; a.games += 1; form.set(match.team2, a); }
   }
-  return { homeGoals: homeGoals / totalWeight || 1.45, awayGoals: awayGoals / totalWeight || 1.15, teams, ratings, form, completed: completed.length };
+  return { homeGoals: homeGoals / totalWeight || 1.45, awayGoals: awayGoals / totalWeight || 1.15, teams, ratings, form, lastPlayed, completed: completed.length };
 }
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -136,6 +145,23 @@ function blendGoals(components, weights) {
   }, {});
 }
 
+function restDays(team, fixtureDate, stats) {
+  const previous = stats.lastPlayed.get(team);
+  if (!previous) return 7;
+  const days = Math.round((Date.parse(`${fixtureDate}T00:00:00Z`) - Date.parse(`${previous}T00:00:00Z`)) / 86_400_000);
+  return clamp(days, 2, 14);
+}
+
+function applyRestAdjustment(xg, match, stats) {
+  const homeRest = restDays(match.team1, match.date, stats);
+  const awayRest = restDays(match.team2, match.date, stats);
+  const advantage = clamp((homeRest - awayRest) * 0.012, -0.075, 0.075);
+  return {
+    xg: { home: clamp(xg.home * (1 + advantage), 0.25, 3.5), away: clamp(xg.away * (1 - advantage), 0.25, 3.5) },
+    rest: { home: homeRest, away: awayRest }
+  };
+}
+
 function scoreMatrix(xg) {
   let home = 0, draw = 0, away = 0, btts = 0, over15 = 0, over25 = 0, over35 = 0;
   let best = { home: 0, away: 0, probability: 0 };
@@ -162,8 +188,10 @@ function scoreMatrix(xg) {
   return { home, draw, away, btts, over15, over25, over35, best };
 }
 
-function predict(match, league, stats, weights) {
-  const xg = blendGoals(componentGoals(match.team1, match.team2, stats), weights);
+function predict(match, league, stats, diagnostic) {
+  const weights = diagnostic?.weights ?? { strength: 0.5, form: 0.25, elo: 0.25 };
+  const adjusted = applyRestAdjustment(blendGoals(componentGoals(match.team1, match.team2, stats), weights), match, stats);
+  const xg = adjusted.xg;
   const { home, draw, away, btts, over15, over25, over35, best } = scoreMatrix(xg);
   const under15 = 1 - over15, under25 = 1 - over25, under35 = 1 - over35;
   const homeOver15 = 1 - poisson(0, xg.home) - poisson(1, xg.home);
@@ -176,8 +204,8 @@ function predict(match, league, stats, weights) {
     id: `${league.id}-${match.date}-${match.team1}-${match.team2}`.replace(/[^a-z0-9]+/gi, '-').toLowerCase(),
     league: league.name, leagueId: league.id, date: match.date, time: match.time ?? 'TBC', home: match.team1, away: match.team2,
     xg: { home: Number(xg.home.toFixed(2)), away: Number(xg.away.toFixed(2)) },
-    confidence: stats.completed >= 140 ? 'Established model' : 'Early-season model',
-    model: { weights },
+    confidence: diagnostic?.matches >= 120 ? 'Backtested model' : 'Early-season model',
+    model: { weights, restDays: adjusted.rest, validation: diagnostic ? { matches: diagnostic.matches, brier: diagnostic.brier, logLoss: diagnostic.logLoss, ece: diagnostic.calibration.ece } : null },
     markets: [
       { name: 'Match result (1X2)', ...market(result[0], result[1]) },
       { name: 'Double chance', ...market(dc[0], dc[1]) },
@@ -195,33 +223,49 @@ function predict(match, league, stats, weights) {
 
 function backtest(matches) {
   const completed = matches.filter((match) => finalScore(match) && match.date < today).sort((a, b) => a.date.localeCompare(b.date));
-  const start = Math.max(35, Math.floor(completed.length * 0.8));
-  const sample = completed.slice(start, start + 40);
+  const start = Math.max(60, Math.floor(completed.length * 0.55));
+  const sample = completed.slice(start);
   if (!sample.length) return null;
-  const brier = { strength: 0, form: 0, elo: 0, ensemble: 0 };
-  let correct = 0;
-  const equalWeights = { strength: 1 / 3, form: 1 / 3, elo: 1 / 3 };
+  const brier = { strength: 0, form: 0, elo: 0 };
+  const observations = [];
   for (const fixture of sample) {
     const stats = buildStats(completed, fixture.date);
     const components = componentGoals(fixture.team1, fixture.team2, stats);
     const [h, a] = finalScore(fixture);
     const actual = [h > a ? 1 : 0, h === a ? 1 : 0, h < a ? 1 : 0];
-    let predicted;
+    const probabilities = {};
     for (const name of ['strength', 'form', 'elo']) {
-      const probabilities = scoreMatrix(components[name]);
-      const values = [probabilities.home, probabilities.draw, probabilities.away];
+      const adjusted = applyRestAdjustment(components[name], fixture, stats).xg;
+      const matrix = scoreMatrix(adjusted);
+      const values = [matrix.home, matrix.draw, matrix.away];
+      probabilities[name] = values;
       brier[name] += values.reduce((sum, value, index) => sum + Math.pow(value - actual[index], 2), 0) / 3;
     }
-    const ensemble = scoreMatrix(blendGoals(components, equalWeights));
-    predicted = [ensemble.home, ensemble.draw, ensemble.away];
-    brier.ensemble += predicted.reduce((sum, value, index) => sum + Math.pow(value - actual[index], 2), 0) / 3;
-    if (predicted.indexOf(Math.max(...predicted)) === actual.indexOf(1)) correct += 1;
+    observations.push({ components, fixture, stats, actual, probabilities });
   }
-  const modelBrier = Object.fromEntries(Object.entries(brier).map(([name, score]) => [name, Math.round((score / sample.length) * 1000) / 1000]));
-  const inverse = ['strength', 'form', 'elo'].map((name) => [name, 1 / (modelBrier[name] + 0.01)]);
+  const componentBrier = Object.fromEntries(Object.entries(brier).map(([name, score]) => [name, score / sample.length]));
+  const inverse = ['strength', 'form', 'elo'].map((name) => [name, 1 / (componentBrier[name] + 0.01)]);
   const totalInverse = inverse.reduce((sum, [, value]) => sum + value, 0);
-  const weights = Object.fromEntries(inverse.map(([name, value]) => [name, Math.round((value / totalInverse) * 1000) / 1000]));
-  return { matches: sample.length, accuracy: Math.round((correct / sample.length) * 1000) / 10, brier: modelBrier.ensemble, components: modelBrier, weights };
+  const rawWeights = Object.fromEntries(inverse.map(([name, value]) => [name, value / totalInverse]));
+  let brierScore = 0, logLoss = 0, correct = 0;
+  const bins = Array.from({ length: 10 }, () => ({ count: 0, confidence: 0, correct: 0 }));
+  for (const observation of observations) {
+    const xg = applyRestAdjustment(blendGoals(observation.components, rawWeights), observation.fixture, observation.stats).xg;
+    const matrix = scoreMatrix(xg);
+    const predicted = [matrix.home, matrix.draw, matrix.away];
+    const outcome = observation.actual.indexOf(1);
+    brierScore += predicted.reduce((sum, value, index) => sum + Math.pow(value - observation.actual[index], 2), 0) / 3;
+    logLoss -= Math.log(Math.max(predicted[outcome], 1e-12));
+    const confidence = Math.max(...predicted);
+    const chosen = predicted.indexOf(confidence);
+    correct += chosen === outcome ? 1 : 0;
+    const bin = bins[Math.min(9, Math.floor(confidence * 10))];
+    bin.count += 1; bin.confidence += confidence; bin.correct += chosen === outcome ? 1 : 0;
+  }
+  const ece = bins.reduce((total, bin) => bin.count ? total + (bin.count / sample.length) * Math.abs(bin.confidence / bin.count - bin.correct / bin.count) : total, 0);
+  const weights = Object.fromEntries(Object.entries(rawWeights).map(([name, value]) => [name, Math.round(value * 1000) / 1000]));
+  const components = Object.fromEntries(Object.entries(componentBrier).map(([name, value]) => [name, Math.round(value * 1000) / 1000]));
+  return { matches: sample.length, accuracy: Math.round((correct / sample.length) * 1000) / 10, brier: Math.round((brierScore / sample.length) * 1000) / 1000, logLoss: Math.round((logLoss / sample.length) * 1000) / 1000, calibration: { ece: Math.round(ece * 1000) / 1000 }, components, weights };
 }
 
 const results = [];
@@ -232,7 +276,7 @@ for (const [id, name, code] of leagues) {
     const stats = buildStats(history, today);
     const diagnostic = backtest(history);
     const upcoming = (current.matches ?? []).filter((match) => match.date >= today && match.date <= forecastEnd && !finalScore(match));
-    results.push({ id, name, predictions: upcoming.map((match) => predict(match, { id, name }, stats, diagnostic?.weights ?? { strength: 0.5, form: 0.25, elo: 0.25 })), diagnostic, error: null });
+    results.push({ id, name, predictions: upcoming.map((match) => predict(match, { id, name }, stats, diagnostic)), diagnostic, error: null });
   } catch (error) {
     results.push({ id, name, predictions: [], diagnostic: null, error: error.message });
   }
@@ -240,10 +284,19 @@ for (const [id, name, code] of leagues) {
 
 const payload = {
   generatedAt: new Date().toISOString(), season, source: 'OpenFootball public-domain match data',
-  methodology: 'League-specific ensemble of recency-weighted home/away strength, six-match form, and sequential Elo forecasts. Component weights are derived from walk-forward Brier scores; final score probabilities use a low-score-corrected Poisson model.',
+  methodology: 'League-specific ensemble of recency-weighted home/away strength, six-match form, sequential Elo, and a bounded rest-day adjustment. Component weights are derived from a multi-season walk-forward Brier evaluation. Forecast quality is reported with Brier score, log loss, and expected calibration error; final score probabilities use a low-score-corrected Poisson model.',
   leagues: results.map(({ id, name, error, diagnostic }) => ({ id, name, error, diagnostic })),
   predictions: results.flatMap((result) => result.predictions).sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`))
 };
+const ids = payload.predictions.map((prediction) => prediction.id);
+const failedLeagues = payload.leagues.filter((league) => league.error);
+if (new Set(ids).size !== ids.length) throw new Error('Refusing to publish a feed with duplicate fixture IDs.');
+if (payload.predictions.some((prediction) => !Number.isFinite(prediction.xg.home) || !Number.isFinite(prediction.xg.away))) throw new Error('Refusing to publish a feed with invalid expected-goal values.');
+if (!payload.predictions.length && failedLeagues.length) {
+  throw new Error(`Refusing to replace the last good feed: no predictions were produced and ${failedLeagues.length} source${failedLeagues.length === 1 ? '' : 's'} failed.`);
+}
 await mkdir(path.dirname(output), { recursive: true });
-await writeFile(output, JSON.stringify(payload, null, 2));
+const temporaryOutput = `${output}.next`;
+await writeFile(temporaryOutput, JSON.stringify(payload, null, 2));
+await rename(temporaryOutput, output);
 console.log(`Wrote ${payload.predictions.length} predictions for ${season} to ${output}`);

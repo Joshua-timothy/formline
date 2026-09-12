@@ -1,1 +1,69 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Formline — Football intelligence</title><link rel="stylesheet" href="styles.css"></head><body><div class="app"><aside><a class="logo" href="#top"><b>F</b>form<span>line</span></a><small>WORKSPACE</small><nav><a class="active">⌁ Predictions</a><a href="#method">◫ Model intelligence</a></nav><small>COMPETITIONS</small><nav id="leagueNav"></nav><footer><i></i><span id="sourceStatus">Checking sources</span><em>Open-data engine · v0.3</em></footer></aside><main id="top"><header><div class="mobile-logo">F form<span>line</span></div><p>Predictions <b>/</b> <strong>Match centre</strong></p><div><span id="updatePill">Updating data</span><button>F</button></div></header><section class="hero"><div><label>MATCH INTELLIGENCE</label><h1>Today’s football,<br><em>made clearer.</em></h1><p>Independent probabilities across Europe’s six major leagues. Built from form, team strength, and historical match patterns.</p></div><div id="quality" class="quality"></div></section><section class="tools"><div class="tabs"><button class="active" data-quick="all">All fixtures</button><button data-quick="today">Today</button><button data-quick="week">Next 7 days</button></div><div><input type="date" id="date"><button id="clearFilters">↻</button></div></section><p id="notice" hidden></p><section id="featured"></section><div class="title"><div><label>UPCOMING FIXTURES</label><h2 id="fixtureTitle">All predictions</h2></div><p id="fixtureCount"></p></div><section id="fixtures" class="fixtures"></section><section id="method" class="method"><b>✦</b><div><label>MODEL TRANSPARENCY</label><h2>Probability, not promise.</h2><p id="methodText"></p></div></section></main></div><dialog id="dialog"><div class="dialog-head"><div><label id="dLeague"></label><h2 id="dTeams"></h2><p id="dMeta"></p></div><button id="close">×</button></div><div id="dScore" class="score"></div><div class="market-label">ALL MODELLED MARKETS <span>Selection · probability</span></div><div id="dMarkets" class="markets"></div><p class="note">Model output is statistical information, not betting advice. Forecasts can be wrong.</p></dialog><template id="card"><article><div class="card-top"><label></label><time></time><button>View →</button></div><div class="teams"><strong class="home"></strong><i>vs</i><strong class="away"></strong></div><div class="signals"><span>MODEL RESULT<b class="result"></b></span><span>EXPECTED GOALS<b class="xg"></b></span><span>MODEL STATUS<b class="confidence"></b></span></div><div class="chips"></div></article></template><script type="module" src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formline — Football intelligence</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <a class="logo" href="#top"><b>F</b>form<span>line</span></a>
+      <small>WORKSPACE</small>
+      <nav><a class="active">⌁ Predictions</a><a href="#method">◫ Model intelligence</a></nav>
+      <small>COMPETITIONS</small>
+      <nav id="leagueNav"></nav>
+      <footer><i></i><span id="sourceStatus">Checking sources</span><em>Open-data engine · v0.3</em></footer>
+    </aside>
+    <main id="top">
+      <header>
+        <div class="mobile-logo">F form<span>line</span></div>
+        <p>Predictions <b>/</b> <strong>Match centre</strong></p>
+        <div><span id="updatePill">Updating data</span><button type="button" aria-label="Account">F</button></div>
+      </header>
+      <section class="hero">
+        <div>
+          <label>MATCH INTELLIGENCE</label>
+          <h1>Today’s football,<br><em>made clearer.</em></h1>
+          <p>Independent probabilities across Europe’s six major leagues. Built from form, team strength, and historical match patterns.</p>
+        </div>
+        <div id="quality" class="quality"></div>
+      </section>
+      <section class="tools" aria-label="Fixture filters">
+        <div class="tabs">
+          <button class="active" data-quick="all" type="button">All fixtures</button>
+          <button data-quick="today" type="button">Today</button>
+          <button data-quick="week" type="button">Next 7 days</button>
+        </div>
+        <div><input type="date" id="date" aria-label="Filter by date"><button id="clearFilters" type="button" aria-label="Clear filters">↻</button></div>
+      </section>
+      <div class="mobile-league-filter">
+        <label for="mobileLeague">COMPETITION</label>
+        <select id="mobileLeague" aria-label="Filter by competition"></select>
+      </div>
+      <p id="notice" hidden></p>
+      <section id="featured"></section>
+      <div class="title"><div><label>UPCOMING FIXTURES</label><h2 id="fixtureTitle">All predictions</h2></div><p id="fixtureCount"></p></div>
+      <section id="fixtures" class="fixtures"></section>
+      <section id="method" class="method"><b>✦</b><div><label>MODEL TRANSPARENCY</label><h2>Probability, not promise.</h2><p id="methodText"></p></div></section>
+    </main>
+  </div>
+  <dialog id="dialog">
+    <div class="dialog-head"><div><label id="dLeague"></label><h2 id="dTeams"></h2><p id="dMeta"></p></div><button id="close" type="button" aria-label="Close match details">×</button></div>
+    <div id="dScore" class="score"></div>
+    <div class="market-label">ALL MODELLED MARKETS <span>Selection · probability</span></div>
+    <div id="dMarkets" class="markets"></div>
+    <p class="note">Model output is statistical information, not betting advice. Forecasts can be wrong.</p>
+  </dialog>
+  <template id="card">
+    <article>
+      <div class="card-top"><label></label><time></time><button type="button">View →</button></div>
+      <div class="teams"><strong class="home"></strong><i>vs</i><strong class="away"></strong></div>
+      <div class="signals"><span>MODEL RESULT<b class="result"></b></span><span>EXPECTED GOALS<b class="xg"></b></span><span>MODEL STATUS<b class="confidence"></b></span></div>
+      <div class="chips"></div>
+    </article>
+  </template>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

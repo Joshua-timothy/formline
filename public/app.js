@@ -1,6 +1,7 @@
 const root = document.querySelector('#fixtures');
 const template = document.querySelector('#card');
 const nav = document.querySelector('#leagueNav');
+const mobileLeague = document.querySelector('#mobileLeague');
 const dateInput = document.querySelector('#date');
 const dialog = document.querySelector('#dialog');
 const notice = document.querySelector('#notice');
@@ -42,7 +43,11 @@ function openFixture(fixture) {
   document.querySelector('#dTeams').textContent = `${fixture.home} vs ${fixture.away}`;
   document.querySelector('#dMeta').textContent = `${formatDate(fixture.date)} · ${fixture.time || 'TBC'} · ${fixture.confidence}`;
   const weights = fixture.model.weights;
-  document.querySelector('#dScore').innerHTML = `<small>EXPECTED GOALS</small><strong>${fixture.xg.home}<i>—</i>${fixture.xg.away}</strong><em>Blend: strength ${Math.round(weights.strength * 100)}% · form ${Math.round(weights.form * 100)}% · Elo ${Math.round(weights.elo * 100)}%</em>`;
+  const rest = fixture.model.restDays;
+  const validation = fixture.model.validation;
+  const validationText = validation ? ` · backtest: ${validation.matches} matches, Brier ${validation.brier}, ECE ${validation.ece}` : '';
+  const restText = rest ? ` · rest: ${rest.home}d / ${rest.away}d` : '';
+  document.querySelector('#dScore').innerHTML = `<small>EXPECTED GOALS</small><strong>${fixture.xg.home}<i>—</i>${fixture.xg.away}</strong><em>Blend: strength ${Math.round(weights.strength * 100)}% · form ${Math.round(weights.form * 100)}% · Elo ${Math.round(weights.elo * 100)}%${restText}${validationText}</em>`;
   document.querySelector('#dMarkets').innerHTML = fixture.markets.map((item) => `<div><span>${esc(item.name)}</span><b>${esc(item.selection)}</b><em>${item.probability}%</em></div>`).join('');
   dialog.showModal();
 }
@@ -50,6 +55,8 @@ function openFixture(fixture) {
 function renderNavigation() {
   nav.innerHTML = `<button class="${league === 'ALL' ? 'selected' : ''}" data-id="ALL">● All leagues <b>${fixtureCount('ALL')}</b></button>` + data.leagues.map((item) => `<button class="${league === item.id ? 'selected' : ''}" data-id="${item.id}">○ ${esc(item.name)} <b>${fixtureCount(item.id)}</b></button>`).join('');
   nav.querySelectorAll('button').forEach((button) => { button.onclick = () => { league = button.dataset.id; render(); }; });
+  mobileLeague.innerHTML = `<option value="ALL">All competitions (${fixtureCount('ALL')})</option>` + data.leagues.map((item) => `<option value="${item.id}">${esc(item.name)} (${fixtureCount(item.id)})</option>`).join('');
+  mobileLeague.value = league;
 }
 
 function renderFeatured(fixtures) {
@@ -106,11 +113,13 @@ function showFeedStatus(feed) {
   const ageHours = (Date.now() - Date.parse(feed.generatedAt)) / 3_600_000;
   const stale = ageHours > STALE_AFTER_HOURS;
   const averageBrier = healthy.length ? (healthy.reduce((total, item) => total + item.diagnostic.brier, 0) / healthy.length).toFixed(3) : '—';
+  const calibrated = healthy.filter((item) => Number.isFinite(item.diagnostic?.calibration?.ece));
+  const averageEce = calibrated.length ? (calibrated.reduce((total, item) => total + item.diagnostic.calibration.ece, 0) / calibrated.length).toFixed(3) : 'Pending';
   const sourceStatus = document.querySelector('#sourceStatus');
   sourceStatus.textContent = failed.length ? 'Some sources need attention' : 'All sources healthy';
   sourceStatus.classList.toggle('warning', failed.length > 0 || stale);
   document.querySelector('#updatePill').textContent = `Updated ${new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(feed.generatedAt))}`;
-  document.querySelector('#quality').innerHTML = `<div><small>FORECASTS LIVE</small><b>${feed.predictions.length}</b><span>next 14 days</span></div><div><small>VALIDATION</small><b>${averageBrier}</b><span>walk-forward Brier</span></div><div><small>LEAGUES</small><b>${healthy.length}/6</b><span>quality checked</span></div>`;
+  document.querySelector('#quality').innerHTML = `<div><small>FORECASTS LIVE</small><b>${feed.predictions.length}</b><span>next 14 days</span></div><div><small>VALIDATION</small><b>${averageBrier}</b><span>walk-forward Brier</span></div><div><small>CALIBRATION</small><b>${averageEce}</b><span>${calibrated.length ? 'expected calibration error' : 'next successful refresh'}</span></div>`;
   document.querySelector('#methodText').textContent = feed.methodology || 'Methodology details are unavailable for this refresh.';
   const messages = [];
   if (stale) messages.push(`Forecast data is over ${Math.floor(ageHours)} hours old; a refresh is pending.`);
@@ -142,6 +151,10 @@ document.querySelectorAll('[data-quick]').forEach((button) => {
   };
 });
 dateInput.onchange = render;
+mobileLeague.onchange = () => {
+  league = mobileLeague.value;
+  render();
+};
 document.querySelector('#clearFilters').onclick = () => {
   league = 'ALL'; quick = 'all'; dateInput.value = '';
   document.querySelectorAll('[data-quick]').forEach((item) => item.classList.toggle('active', item.dataset.quick === 'all'));
