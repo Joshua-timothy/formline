@@ -1,0 +1,10 @@
+{
+  "name": "pitch-probability",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update": "node scripts/update-predictions.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}
