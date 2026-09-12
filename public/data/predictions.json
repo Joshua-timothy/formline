@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T21:03:13.322Z",
+  "generatedAt": "2026-09-12T21:46:32.252Z",
   "season": "2026-27",
   "source": "OpenFootball public-domain match data",
   "methodology": "League-specific ensemble of recency-weighted home/away strength, six-match form, and sequential Elo forecasts. Component weights are derived from walk-forward Brier scores; final score probabilities use a low-score-corrected Poisson model.",
