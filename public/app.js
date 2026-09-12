@@ -1,7 +1,6 @@
 const root = document.querySelector('#fixtures');
 const template = document.querySelector('#card');
 const nav = document.querySelector('#leagueNav');
-const mobileLeague = document.querySelector('#mobileLeague');
 const dateInput = document.querySelector('#date');
 const dialog = document.querySelector('#dialog');
 const notice = document.querySelector('#notice');
@@ -55,8 +54,6 @@ function openFixture(fixture) {
 function renderNavigation() {
   nav.innerHTML = `<button class="${league === 'ALL' ? 'selected' : ''}" data-id="ALL">● All leagues <b>${fixtureCount('ALL')}</b></button>` + data.leagues.map((item) => `<button class="${league === item.id ? 'selected' : ''}" data-id="${item.id}">○ ${esc(item.name)} <b>${fixtureCount(item.id)}</b></button>`).join('');
   nav.querySelectorAll('button').forEach((button) => { button.onclick = () => { league = button.dataset.id; render(); }; });
-  mobileLeague.innerHTML = `<option value="ALL">All competitions (${fixtureCount('ALL')})</option>` + data.leagues.map((item) => `<option value="${item.id}">${esc(item.name)} (${fixtureCount(item.id)})</option>`).join('');
-  mobileLeague.value = league;
 }
 
 function renderFeatured(fixtures) {
@@ -151,10 +148,6 @@ document.querySelectorAll('[data-quick]').forEach((button) => {
   };
 });
 dateInput.onchange = render;
-mobileLeague.onchange = () => {
-  league = mobileLeague.value;
-  render();
-};
 document.querySelector('#clearFilters').onclick = () => {
   league = 'ALL'; quick = 'all'; dateInput.value = '';
   document.querySelectorAll('[data-quick]').forEach((item) => item.classList.toggle('active', item.dataset.quick === 'all'));
