@@ -19,6 +19,27 @@ const localDate = () => {
 };
 const formatDate = (value) => new Intl.DateTimeFormat(undefined, { weekday: 'short', month: 'short', day: 'numeric' }).format(new Date(`${value}T12:00:00`));
 const market = (fixture, name) => fixture.markets.find((item) => item.name === name);
+const oneXTwo = (fixture) => {
+  if (fixture.oneXTwo) return fixture.oneXTwo;
+  const poisson = (goals, expected) => Math.exp(-expected) * (expected ** goals) / Array.from({ length: goals }, (_, index) => index + 1).reduce((total, value) => total * value, 1);
+  const cells = [];
+  for (let homeGoals = 0; homeGoals <= 8; homeGoals++) for (let awayGoals = 0; awayGoals <= 8; awayGoals++) {
+    let probability = poisson(homeGoals, fixture.xg.home) * poisson(awayGoals, fixture.xg.away);
+    if (homeGoals === 0 && awayGoals === 0) probability *= 1 + fixture.xg.home * fixture.xg.away * 0.06;
+    if (homeGoals === 0 && awayGoals === 1) probability *= 1 - fixture.xg.home * 0.06;
+    if (homeGoals === 1 && awayGoals === 0) probability *= 1 - fixture.xg.away * 0.06;
+    if (homeGoals === 1 && awayGoals === 1) probability *= 1.06;
+    cells.push({ homeGoals, awayGoals, probability });
+  }
+  const total = cells.reduce((sum, cell) => sum + cell.probability, 0);
+  const values = cells.reduce((result, cell) => {
+    if (cell.homeGoals > cell.awayGoals) result.home += cell.probability / total;
+    else if (cell.homeGoals === cell.awayGoals) result.draw += cell.probability / total;
+    else result.away += cell.probability / total;
+    return result;
+  }, { home: 0, draw: 0, away: 0 });
+  return Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Math.round(value * 1000) / 10]));
+};
 const fixtureCount = (id) => data.predictions.filter((fixture) => id === 'ALL' || fixture.leagueId === id).length;
 
 function visibleFixtures() {
@@ -72,6 +93,7 @@ function renderFixtures(fixtures) {
   fixtures.forEach((fixture) => {
     const card = template.content.cloneNode(true);
     const result = market(fixture, 'Match result (1X2)');
+    const probabilities = oneXTwo(fixture);
     card.querySelector('label').textContent = fixture.league;
     card.querySelector('time').textContent = `${formatDate(fixture.date)} · ${fixture.time || 'TBC'}`;
     card.querySelector('.home').textContent = fixture.home;
@@ -79,6 +101,11 @@ function renderFixtures(fixtures) {
     card.querySelector('.result').textContent = `${result.selection} · ${result.probability}%`;
     card.querySelector('.xg').textContent = `${fixture.xg.home} — ${fixture.xg.away}`;
     card.querySelector('.confidence').textContent = fixture.confidence.replace(' model', '');
+    const outcomes = document.createElement('div');
+    outcomes.className = 'one-x-two';
+    outcomes.setAttribute('aria-label', 'Match result probabilities');
+    outcomes.innerHTML = `<span><small>1</small><b>${probabilities.home}%</b></span><span><small>X</small><b>${probabilities.draw}%</b></span><span><small>2</small><b>${probabilities.away}%</b></span>`;
+    card.querySelector('.signals').before(outcomes);
     ['Over / Under 2.5', 'Both teams to score', 'Double chance'].forEach((name) => {
       const item = market(fixture, name);
       const chip = document.createElement('span');

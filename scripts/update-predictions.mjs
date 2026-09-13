@@ -59,78 +59,115 @@ function market(selection, probability) {
   return { selection, probability: Math.round(probability * 1000) / 10 };
 }
 
-function buildStats(matches, asOf) {
-  const completed = matches.filter((match) => finalScore(match) && match.date < asOf).sort((a, b) => a.date.localeCompare(b.date));
-  let homeGoals = 0, awayGoals = 0, totalWeight = 0;
-  const teams = new Map();
-  const get = (name) => teams.get(name) ?? { homeFor: 0, homeAgainst: 0, homeGames: 0, awayFor: 0, awayAgainst: 0, awayGames: 0 };
-  for (const match of completed) {
-    const [home, away] = finalScore(match);
-    const daysAgo = Math.max(0, (Date.parse(`${asOf}T00:00:00Z`) - Date.parse(`${match.date}T00:00:00Z`)) / 86_400_000);
-    const weight = Math.exp(-daysAgo / 210);
-    homeGoals += home * weight; awayGoals += away * weight; totalWeight += weight;
-    const h = get(match.team1); h.homeFor += home * weight; h.homeAgainst += away * weight; h.homeGames += weight; teams.set(match.team1, h);
-    const a = get(match.team2); a.awayFor += away * weight; a.awayAgainst += home * weight; a.awayGames += weight; teams.set(match.team2, a);
-  }
-  const ratings = new Map();
-  const rating = (team) => ratings.get(team) ?? 1500;
-  for (const match of completed) {
-    const [home, away] = finalScore(match), homeRating = rating(match.team1), awayRating = rating(match.team2);
-    const expectedHome = 1 / (1 + Math.pow(10, -(homeRating + 55 - awayRating) / 400));
-    const actualHome = home > away ? 1 : home === away ? 0.5 : 0;
-    const k = 20;
-    ratings.set(match.team1, homeRating + k * (actualHome - expectedHome));
-    ratings.set(match.team2, awayRating - k * (actualHome - expectedHome));
-  }
-  const form = new Map();
-  const lastPlayed = new Map();
-  const getForm = (name) => form.get(name) ?? { scored: 0, conceded: 0, games: 0 };
-  for (const match of completed) {
-    lastPlayed.set(match.team1, match.date);
-    lastPlayed.set(match.team2, match.date);
-  }
-  for (const match of [...completed].reverse()) {
-    const [home, away] = finalScore(match);
-    const h = getForm(match.team1), a = getForm(match.team2);
-    if (h.games < 6) { h.scored += home; h.conceded += away; h.games += 1; form.set(match.team1, h); }
-    if (a.games < 6) { a.scored += away; a.conceded += home; a.games += 1; form.set(match.team2, a); }
-  }
-  return { homeGoals: homeGoals / totalWeight || 1.45, awayGoals: awayGoals / totalWeight || 1.15, teams, ratings, form, lastPlayed, completed: completed.length };
-}
-
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
+const seasonKey = (date) => {
+  const value = new Date(`${date}T00:00:00Z`);
+  return value.getUTCFullYear() - (value.getUTCMonth() < 6 ? 1 : 0);
+};
+
+function historicalWeight(date, asOf) {
+  const daysAgo = Math.max(0, (Date.parse(`${asOf}T00:00:00Z`) - Date.parse(`${date}T00:00:00Z`)) / 86_400_000);
+  const seasonsBack = Math.max(0, seasonKey(asOf) - seasonKey(date));
+  const seasonWeight = [2.4, 0.55, 0.14][seasonsBack] ?? 0.06;
+  return seasonWeight * Math.exp(-daysAgo / 165);
+}
+
+function buildStats(matches, asOf) {
+  const completed = matches.filter((match) => finalScore(match) && match.date < asOf).sort((a, b) => a.date.localeCompare(b.date));
+  const observations = completed.map((match) => ({ match, score: finalScore(match), weight: historicalWeight(match.date, asOf) }));
+  const totalWeight = observations.reduce((total, item) => total + item.weight, 0) || 1;
+  const homeGoals = observations.reduce((total, item) => total + item.score[0] * item.weight, 0) / totalWeight || 1.45;
+  const awayGoals = observations.reduce((total, item) => total + item.score[1] * item.weight, 0) / totalWeight || 1.15;
+  const names = new Set(completed.flatMap((match) => [match.team1, match.team2]));
+  const attack = new Map([...names].map((team) => [team, 0]));
+  const defense = new Map([...names].map((team) => [team, 0]));
+  const change = (map, team, amount) => map.set(team, clamp((map.get(team) ?? 0) + amount, -0.9, 0.9));
+
+  // Penalised, opponent-adjusted Poisson attack/defence fitting. The priors prevent a
+  // single outlier result from making a newly promoted side look like an elite team.
+  for (let iteration = 0; iteration < 90; iteration++) {
+    const attackGradient = new Map(), defenseGradient = new Map();
+    const add = (map, team, value) => map.set(team, (map.get(team) ?? 0) + value);
+    for (const { match, score, weight } of observations) {
+      const expectedHome = clamp(homeGoals * Math.exp((attack.get(match.team1) ?? 0) - (defense.get(match.team2) ?? 0)), 0.2, 4.5);
+      const expectedAway = clamp(awayGoals * Math.exp((attack.get(match.team2) ?? 0) - (defense.get(match.team1) ?? 0)), 0.2, 4.5);
+      const homeResidual = weight * (score[0] - expectedHome), awayResidual = weight * (score[1] - expectedAway);
+      add(attackGradient, match.team1, homeResidual); add(defenseGradient, match.team2, -homeResidual);
+      add(attackGradient, match.team2, awayResidual); add(defenseGradient, match.team1, -awayResidual);
+    }
+    for (const team of names) {
+      change(attack, team, 0.38 * ((attackGradient.get(team) ?? 0) / totalWeight - 0.36 * (attack.get(team) ?? 0)));
+      change(defense, team, 0.38 * ((defenseGradient.get(team) ?? 0) / totalWeight - 0.36 * (defense.get(team) ?? 0)));
+    }
+  }
+
+  const ratings = new Map(), lastPlayed = new Map();
+  const rating = (team) => ratings.get(team) ?? 1500;
+  let activeSeason;
+  for (const match of completed) {
+    const matchSeason = seasonKey(match.date);
+    if (activeSeason !== undefined && matchSeason !== activeSeason) {
+      for (const [team, value] of ratings) ratings.set(team, 1500 + (value - 1500) * 0.82);
+    }
+    activeSeason = matchSeason;
+    const [home, away] = finalScore(match), homeRating = rating(match.team1), awayRating = rating(match.team2);
+    const expectedHome = 1 / (1 + Math.pow(10, -(homeRating + 58 - awayRating) / 400));
+    const actualHome = home > away ? 1 : home === away ? 0.5 : 0;
+    const goalMargin = Math.min(3, Math.abs(home - away));
+    const k = 18 + goalMargin * 3;
+    ratings.set(match.team1, homeRating + k * (actualHome - expectedHome));
+    ratings.set(match.team2, awayRating - k * (actualHome - expectedHome));
+    lastPlayed.set(match.team1, match.date); lastPlayed.set(match.team2, match.date);
+  }
+
+  const form = new Map();
+  const addForm = (team, attackResidual, defenseResidual, weight) => {
+    const value = form.get(team) ?? { attack: 0, defense: 0, games: 0, weight: 0 };
+    if (value.games < 6) {
+      value.attack += attackResidual * weight; value.defense += defenseResidual * weight;
+      value.games += 1; value.weight += weight; form.set(team, value);
+    }
+  };
+  for (const match of [...completed].reverse()) {
+    const [home, away] = finalScore(match);
+    const expectedHome = clamp(homeGoals * Math.exp((attack.get(match.team1) ?? 0) - (defense.get(match.team2) ?? 0)), 0.2, 4.5);
+    const expectedAway = clamp(awayGoals * Math.exp((attack.get(match.team2) ?? 0) - (defense.get(match.team1) ?? 0)), 0.2, 4.5);
+    const daysAgo = Math.max(0, (Date.parse(`${asOf}T00:00:00Z`) - Date.parse(`${match.date}T00:00:00Z`)) / 86_400_000);
+    const recency = Math.exp(-daysAgo / 55);
+    addForm(match.team1, Math.log((home + 0.65) / (expectedHome + 0.65)), Math.log((away + 0.65) / (expectedAway + 0.65)), recency);
+    addForm(match.team2, Math.log((away + 0.65) / (expectedAway + 0.65)), Math.log((home + 0.65) / (expectedHome + 0.65)), recency);
+  }
+  for (const value of form.values()) {
+    const shrinkage = value.weight / (value.weight + 2.2);
+    value.attack = clamp((value.attack / value.weight) * shrinkage, -0.35, 0.35);
+    value.defense = clamp((value.defense / value.weight) * shrinkage, -0.35, 0.35);
+  }
+  return { homeGoals, awayGoals, attack, defense, ratings, form, lastPlayed, completed: completed.length };
+}
+
 function strengthGoals(home, away, stats) {
-  const h = stats.teams.get(home) ?? { homeFor: stats.homeGoals, homeAgainst: stats.awayGoals, homeGames: 0 };
-  const a = stats.teams.get(away) ?? { awayFor: stats.awayGoals, awayAgainst: stats.homeGoals, awayGames: 0 };
-  const smooth = (value, games, baseline) => (value * games + baseline * 6) / (games + 6);
-  const homeFor = smooth(h.homeFor / Math.max(h.homeGames, 1), h.homeGames, stats.homeGoals);
-  const homeAgainst = smooth(h.homeAgainst / Math.max(h.homeGames, 1), h.homeGames, stats.awayGoals);
-  const awayFor = smooth(a.awayFor / Math.max(a.awayGames, 1), a.awayGames, stats.awayGoals);
-  const awayAgainst = smooth(a.awayAgainst / Math.max(a.awayGames, 1), a.awayGames, stats.homeGoals);
   return {
-    home: clamp(stats.homeGoals * Math.sqrt((homeFor / stats.homeGoals) * (awayAgainst / stats.homeGoals)), 0.25, 3.5),
-    away: clamp(stats.awayGoals * Math.sqrt((awayFor / stats.awayGoals) * (homeAgainst / stats.awayGoals)), 0.25, 3.5)
+    home: clamp(stats.homeGoals * Math.exp((stats.attack.get(home) ?? 0) - (stats.defense.get(away) ?? 0)), 0.25, 4.0),
+    away: clamp(stats.awayGoals * Math.exp((stats.attack.get(away) ?? 0) - (stats.defense.get(home) ?? 0)), 0.25, 4.0)
   };
 }
 
 function formGoals(home, away, stats) {
-  const baseline = (stats.homeGoals + stats.awayGoals) / 2;
-  const h = stats.form.get(home) ?? { scored: baseline, conceded: baseline, games: 0 };
-  const a = stats.form.get(away) ?? { scored: baseline, conceded: baseline, games: 0 };
-  const rate = (value, games) => (value + baseline * 3) / (games + 3);
+  const baseline = strengthGoals(home, away, stats);
+  const h = stats.form.get(home) ?? { attack: 0, defense: 0 };
+  const a = stats.form.get(away) ?? { attack: 0, defense: 0 };
   return {
-    home: clamp(stats.homeGoals * Math.sqrt((rate(h.scored, h.games) / baseline) * (rate(a.conceded, a.games) / baseline)), 0.25, 3.5),
-    away: clamp(stats.awayGoals * Math.sqrt((rate(a.scored, a.games) / baseline) * (rate(h.conceded, h.games) / baseline)), 0.25, 3.5)
+    home: clamp(baseline.home * Math.exp(h.attack - a.defense), 0.25, 4.0),
+    away: clamp(baseline.away * Math.exp(a.attack - h.defense), 0.25, 4.0)
   };
 }
 
 function eloGoals(home, away, stats) {
   const homeRating = stats.ratings.get(home) ?? 1500, awayRating = stats.ratings.get(away) ?? 1500;
-  const homeWinStrength = 1 / (1 + Math.pow(10, -(homeRating + 55 - awayRating) / 400));
+  const homeWinStrength = 1 / (1 + Math.pow(10, -(homeRating + 58 - awayRating) / 400));
   const totalGoals = stats.homeGoals + stats.awayGoals;
-  const baselineShare = stats.homeGoals / totalGoals;
-  const homeShare = clamp(baselineShare + (homeWinStrength - 0.5) * 0.32, 0.25, 0.75);
+  const homeShare = clamp(stats.homeGoals / totalGoals + (homeWinStrength - 0.5) * 0.55, 0.2, 0.8);
   return { home: totalGoals * homeShare, away: totalGoals * (1 - homeShare) };
 }
 
@@ -189,7 +226,7 @@ function scoreMatrix(xg) {
 }
 
 function predict(match, league, stats, diagnostic) {
-  const weights = diagnostic?.weights ?? { strength: 0.5, form: 0.25, elo: 0.25 };
+  const weights = diagnostic?.weights ?? { strength: 0.6, form: 0.25, elo: 0.15 };
   const adjusted = applyRestAdjustment(blendGoals(componentGoals(match.team1, match.team2, stats), weights), match, stats);
   const xg = adjusted.xg;
   const { home, draw, away, btts, over15, over25, over35, best } = scoreMatrix(xg);
@@ -204,6 +241,11 @@ function predict(match, league, stats, diagnostic) {
     id: `${league.id}-${match.date}-${match.team1}-${match.team2}`.replace(/[^a-z0-9]+/gi, '-').toLowerCase(),
     league: league.name, leagueId: league.id, date: match.date, time: match.time ?? 'TBC', home: match.team1, away: match.team2,
     xg: { home: Number(xg.home.toFixed(2)), away: Number(xg.away.toFixed(2)) },
+    oneXTwo: {
+      home: Math.round(home * 1000) / 10,
+      draw: Math.round(draw * 1000) / 10,
+      away: Math.round(away * 1000) / 10
+    },
     confidence: diagnostic?.matches >= 120 ? 'Backtested model' : 'Early-season model',
     model: { weights, restDays: adjusted.rest, validation: diagnostic ? { matches: diagnostic.matches, brier: diagnostic.brier, logLoss: diagnostic.logLoss, ece: diagnostic.calibration.ece } : null },
     markets: [
@@ -224,7 +266,9 @@ function predict(match, league, stats, diagnostic) {
 function backtest(matches) {
   const completed = matches.filter((match) => finalScore(match) && match.date < today).sort((a, b) => a.date.localeCompare(b.date));
   const start = Math.max(60, Math.floor(completed.length * 0.55));
-  const sample = completed.slice(start);
+  const candidates = completed.slice(start);
+  const stride = Math.max(1, Math.ceil(candidates.length / 140));
+  const sample = candidates.filter((_, index) => index % stride === 0);
   if (!sample.length) return null;
   const brier = { strength: 0, form: 0, elo: 0 };
   const observations = [];
@@ -244,7 +288,8 @@ function backtest(matches) {
     observations.push({ components, fixture, stats, actual, probabilities });
   }
   const componentBrier = Object.fromEntries(Object.entries(brier).map(([name, score]) => [name, score / sample.length]));
-  const inverse = ['strength', 'form', 'elo'].map((name) => [name, 1 / (componentBrier[name] + 0.01)]);
+  const ensemblePrior = { strength: 1.8, form: 0.85, elo: 0.55 };
+  const inverse = ['strength', 'form', 'elo'].map((name) => [name, ensemblePrior[name] / (componentBrier[name] + 0.01)]);
   const totalInverse = inverse.reduce((sum, [, value]) => sum + value, 0);
   const rawWeights = Object.fromEntries(inverse.map(([name, value]) => [name, value / totalInverse]));
   let brierScore = 0, logLoss = 0, correct = 0;
@@ -284,7 +329,7 @@ for (const [id, name, code] of leagues) {
 
 const payload = {
   generatedAt: new Date().toISOString(), season, source: 'OpenFootball public-domain match data',
-  methodology: 'League-specific ensemble of recency-weighted home/away strength, six-match form, sequential Elo, and a bounded rest-day adjustment. Component weights are derived from a multi-season walk-forward Brier evaluation. Forecast quality is reported with Brier score, log loss, and expected calibration error; final score probabilities use a low-score-corrected Poisson model.',
+  methodology: 'Opponent-adjusted Poisson attack and defence ratings use time-decayed results, with current-season matches weighted more heavily and small samples regularised toward league average. The model applies a six-match residual-form correction, season-regressed Elo, and a bounded rest-day adjustment. Ensemble weights come from walk-forward Brier evaluation; final 1X2 probabilities use a low-score-corrected Poisson score matrix.',
   leagues: results.map(({ id, name, error, diagnostic }) => ({ id, name, error, diagnostic })),
   predictions: results.flatMap((result) => result.predictions).sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`))
 };
@@ -292,6 +337,10 @@ const ids = payload.predictions.map((prediction) => prediction.id);
 const failedLeagues = payload.leagues.filter((league) => league.error);
 if (new Set(ids).size !== ids.length) throw new Error('Refusing to publish a feed with duplicate fixture IDs.');
 if (payload.predictions.some((prediction) => !Number.isFinite(prediction.xg.home) || !Number.isFinite(prediction.xg.away))) throw new Error('Refusing to publish a feed with invalid expected-goal values.');
+if (payload.predictions.some((prediction) => {
+  const values = Object.values(prediction.oneXTwo ?? {});
+  return values.length !== 3 || values.some((value) => !Number.isFinite(value) || value < 0 || value > 100) || Math.abs(values.reduce((sum, value) => sum + value, 0) - 100) > 0.2;
+})) throw new Error('Refusing to publish a feed with invalid 1X2 probabilities.');
 if (!payload.predictions.length && failedLeagues.length) {
   throw new Error(`Refusing to replace the last good feed: no predictions were produced and ${failedLeagues.length} source${failedLeagues.length === 1 ? '' : 's'} failed.`);
 }
