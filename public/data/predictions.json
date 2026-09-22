@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T10:42:01.438Z",
+  "generatedAt": "2026-09-22T09:56:25.762Z",
   "season": "2026-27",
   "source": "OpenFootball public match data, calibrated with football-data.co.uk public pre-match odds when a fixture is matched",
   "methodology": "Opponent-adjusted Poisson attack and defence ratings use time-decayed results, current-season weighting, and strong small-sample regularisation. A team-specific home edge is fitted with heavy shrinkage toward league average. Established clubs retain their multi-season evidence, while promoted teams receive a conservative division-transition prior until enough top-flight matches are played. Residual form is opponent-adjusted, rest accounts non-linearly for short turnaround and 10/21-day congestion, and season-regressed Elo plus ensemble weights adapt to matchweek evidence. Final 1X2 probabilities combine the low-score-corrected Poisson forecast with normalized public pre-match market probabilities only when matching odds are available; the blend weight is selected from out-of-sample historical results and shrunk to prevent overfitting. Fixtures without a reliable market match use the statistical model alone.",
@@ -9,31 +9,31 @@
       "name": "Premier League",
       "error": null,
       "diagnostic": {
-        "matches": 45,
-        "accuracy": 42.2,
-        "brier": 0.217,
-        "logLoss": 1.079,
+        "matches": 46,
+        "accuracy": 63,
+        "brier": 0.193,
+        "logLoss": 0.974,
         "calibration": {
-          "ece": 0.066
+          "ece": 0.182
         },
         "components": {
-          "strength": 0.215,
-          "form": 0.237,
-          "current": 0.226,
-          "elo": 0.215
+          "strength": 0.197,
+          "form": 0.198,
+          "current": 0.195,
+          "elo": 0.19
         },
         "weights": {
-          "strength": 0.478,
-          "form": 0.194,
-          "current": 0.183,
+          "strength": 0.462,
+          "form": 0.204,
+          "current": 0.187,
           "elo": 0.146
         },
         "marketCalibration": {
-          "matches": 9,
-          "coverage": 0.2,
-          "weight": 0.377,
-          "modelBrier": 0.209,
-          "blendedBrier": 0.191
+          "matches": 17,
+          "coverage": 0.3695652173913043,
+          "weight": 0.374,
+          "modelBrier": 0.218,
+          "blendedBrier": 0.215
         }
       }
     },
@@ -42,31 +42,31 @@
       "name": "La Liga",
       "error": null,
       "diagnostic": {
-        "matches": 46,
-        "accuracy": 47.8,
-        "brier": 0.214,
-        "logLoss": 1.065,
+        "matches": 47,
+        "accuracy": 40.4,
+        "brier": 0.209,
+        "logLoss": 1.044,
         "calibration": {
-          "ece": 0.129
+          "ece": 0.119
         },
         "components": {
-          "strength": 0.213,
-          "form": 0.223,
-          "current": 0.216,
-          "elo": 0.217
+          "strength": 0.211,
+          "form": 0.22,
+          "current": 0.213,
+          "elo": 0.208
         },
         "weights": {
-          "strength": 0.472,
-          "form": 0.201,
+          "strength": 0.468,
+          "form": 0.2,
           "current": 0.186,
-          "elo": 0.141
+          "elo": 0.146
         },
         "marketCalibration": {
-          "matches": 15,
-          "coverage": 0.32608695652173914,
-          "weight": 0.393,
-          "modelBrier": 0.204,
-          "blendedBrier": 0.2
+          "matches": 9,
+          "coverage": 0.19148936170212766,
+          "weight": 0.377,
+          "modelBrier": 0.214,
+          "blendedBrier": 0.201
         }
       }
     },
@@ -76,30 +76,30 @@
       "error": null,
       "diagnostic": {
         "matches": 45,
-        "accuracy": 48.9,
-        "brier": 0.207,
-        "logLoss": 1.032,
+        "accuracy": 46.7,
+        "brier": 0.214,
+        "logLoss": 1.061,
         "calibration": {
-          "ece": 0.051
+          "ece": 0.039
         },
         "components": {
-          "strength": 0.212,
-          "form": 0.21,
-          "current": 0.209,
-          "elo": 0.211
+          "strength": 0.21,
+          "form": 0.228,
+          "current": 0.219,
+          "elo": 0.209
         },
         "weights": {
-          "strength": 0.463,
-          "form": 0.208,
-          "current": 0.188,
-          "elo": 0.142
+          "strength": 0.476,
+          "form": 0.195,
+          "current": 0.183,
+          "elo": 0.146
         },
         "marketCalibration": {
-          "matches": 14,
-          "coverage": 0.3111111111111111,
-          "weight": 0.39,
-          "modelBrier": 0.21,
-          "blendedBrier": 0.203
+          "matches": 12,
+          "coverage": 0.26666666666666666,
+          "weight": 0.379,
+          "modelBrier": 0.2,
+          "blendedBrier": 0.195
         }
       }
     },
@@ -108,24 +108,24 @@
       "name": "Bundesliga",
       "error": null,
       "diagnostic": {
-        "matches": 48,
-        "accuracy": 47.9,
-        "brier": 0.205,
-        "logLoss": 1.032,
+        "matches": 49,
+        "accuracy": 53.1,
+        "brier": 0.194,
+        "logLoss": 0.974,
         "calibration": {
-          "ece": 0.081
+          "ece": 0.108
         },
         "components": {
-          "strength": 0.205,
-          "form": 0.217,
-          "current": 0.209,
-          "elo": 0.193
+          "strength": 0.189,
+          "form": 0.205,
+          "current": 0.197,
+          "elo": 0.194
         },
         "weights": {
-          "strength": 0.468,
+          "strength": 0.478,
           "form": 0.196,
-          "current": 0.184,
-          "elo": 0.152
+          "current": 0.183,
+          "elo": 0.142
         },
         "marketCalibration": {
           "matches": 0,
@@ -139,24 +139,24 @@
       "name": "Ligue 1",
       "error": null,
       "diagnostic": {
-        "matches": 49,
-        "accuracy": 32.7,
-        "brier": 0.232,
-        "logLoss": 1.137,
+        "matches": 50,
+        "accuracy": 44,
+        "brier": 0.211,
+        "logLoss": 1.051,
         "calibration": {
-          "ece": 0.14
+          "ece": 0.111
         },
         "components": {
-          "strength": 0.221,
-          "form": 0.25,
-          "current": 0.238,
-          "elo": 0.228
+          "strength": 0.21,
+          "form": 0.22,
+          "current": 0.215,
+          "elo": 0.212
         },
         "weights": {
-          "strength": 0.484,
-          "form": 0.191,
-          "current": 0.181,
-          "elo": 0.144
+          "strength": 0.472,
+          "form": 0.2,
+          "current": 0.185,
+          "elo": 0.142
         },
         "marketCalibration": {
           "matches": 0,
@@ -170,31 +170,31 @@
       "name": "Eredivisie",
       "error": null,
       "diagnostic": {
-        "matches": 50,
-        "accuracy": 50,
-        "brier": 0.209,
-        "logLoss": 1.044,
+        "matches": 44,
+        "accuracy": 45.5,
+        "brier": 0.225,
+        "logLoss": 1.117,
         "calibration": {
-          "ece": 0.046
+          "ece": 0.096
         },
         "components": {
-          "strength": 0.204,
-          "form": 0.226,
-          "current": 0.214,
-          "elo": 0.203
+          "strength": 0.218,
+          "form": 0.237,
+          "current": 0.229,
+          "elo": 0.219
         },
         "weights": {
-          "strength": 0.478,
-          "form": 0.193,
-          "current": 0.183,
-          "elo": 0.147
+          "strength": 0.476,
+          "form": 0.196,
+          "current": 0.182,
+          "elo": 0.145
         },
         "marketCalibration": {
-          "matches": 11,
-          "coverage": 0.22,
-          "weight": 0.377,
-          "modelBrier": 0.206,
-          "blendedBrier": 0.203
+          "matches": 9,
+          "coverage": 0.20454545454545456,
+          "weight": 0.318,
+          "modelBrier": 0.258,
+          "blendedBrier": 0.263
         }
       }
     }
