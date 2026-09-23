@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T09:56:25.762Z",
+  "generatedAt": "2026-09-23T09:58:24.274Z",
   "season": "2026-27",
   "source": "OpenFootball public match data, calibrated with football-data.co.uk public pre-match odds when a fixture is matched",
   "methodology": "Opponent-adjusted Poisson attack and defence ratings use time-decayed results, current-season weighting, and strong small-sample regularisation. A team-specific home edge is fitted with heavy shrinkage toward league average. Established clubs retain their multi-season evidence, while promoted teams receive a conservative division-transition prior until enough top-flight matches are played. Residual form is opponent-adjusted, rest accounts non-linearly for short turnaround and 10/21-day congestion, and season-regressed Elo plus ensemble weights adapt to matchweek evidence. Final 1X2 probabilities combine the low-score-corrected Poisson forecast with normalized public pre-match market probabilities only when matching odds are available; the blend weight is selected from out-of-sample historical results and shrunk to prevent overfitting. Fixtures without a reliable market match use the statistical model alone.",
