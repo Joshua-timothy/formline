@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T09:59:58.974Z",
+  "generatedAt": "2026-09-25T10:11:07.180Z",
   "season": "2026-27",
   "source": "OpenFootball public match data, calibrated with football-data.co.uk public pre-match odds when a fixture is matched",
   "methodology": "Opponent-adjusted Poisson attack and defence ratings use time-decayed results, current-season weighting, and strong small-sample regularisation. A team-specific home edge is fitted with heavy shrinkage toward league average. Established clubs retain their multi-season evidence, while promoted teams receive a conservative division-transition prior until enough top-flight matches are played. Residual form is opponent-adjusted, rest accounts non-linearly for short turnaround and 10/21-day congestion, and season-regressed Elo plus ensemble weights adapt to matchweek evidence. Final 1X2 probabilities combine the low-score-corrected Poisson forecast with normalized public pre-match market probabilities only when matching odds are available; the blend weight is selected from out-of-sample historical results and shrunk to prevent overfitting. Fixtures without a reliable market match use the statistical model alone.",
@@ -199,5 +199,538 @@
       }
     }
   ],
-  "predictions": []
+  "predictions": [
+    {
+      "id": "ed-2026-10-09-psv-sc-heerenveen",
+      "league": "Eredivisie",
+      "leagueId": "ED",
+      "date": "2026-10-09",
+      "time": "20:00",
+      "home": "PSV",
+      "away": "SC Heerenveen",
+      "xg": {
+        "home": 2.8,
+        "away": 1.52
+      },
+      "oneXTwo": {
+        "home": 64,
+        "draw": 17.5,
+        "away": 18.6
+      },
+      "confidence": "Early-season model",
+      "model": {
+        "weights": {
+          "strength": 0.424097414369946,
+          "form": 0.2614154099485073,
+          "current": 0.18802993808285123,
+          "elo": 0.12645723759869545
+        },
+        "stage": 0.583,
+        "matchupReliability": 0.613,
+        "currentFormEvidence": 0.554,
+        "currentXgEvidence": 0.171,
+        "currentXgSignal": {
+          "home": {
+            "attack": 0,
+            "defense": 0,
+            "games": 0,
+            "reliability": 0
+          },
+          "away": {
+            "attack": -0.037,
+            "defense": -0.158,
+            "games": 2,
+            "reliability": 0.343
+          }
+        },
+        "componentXg": {
+          "strength": {
+            "home": 2.14,
+            "away": 1.63
+          },
+          "form": {
+            "home": 3.76,
+            "away": 1.45
+          },
+          "current": {
+            "home": 3.28,
+            "away": 1.5
+          },
+          "elo": {
+            "home": 2.32,
+            "away": 1.31
+          }
+        },
+        "restDays": {
+          "home": 14,
+          "away": 14,
+          "homeFatigue": 0,
+          "awayFatigue": 0,
+          "homeMatches21": 1,
+          "awayMatches21": 1
+        },
+        "marketCalibration": {
+          "available": false,
+          "weight": 0
+        },
+        "validation": {
+          "matches": 44,
+          "brier": 0.225,
+          "logLoss": 1.117,
+          "ece": 0.096
+        }
+      },
+      "markets": [
+        {
+          "name": "Match result (1X2)",
+          "selection": "Home",
+          "probability": 64
+        },
+        {
+          "name": "Double chance",
+          "selection": "12",
+          "probability": 82.5
+        },
+        {
+          "name": "Draw no bet",
+          "selection": "Home",
+          "probability": 77.5
+        },
+        {
+          "name": "Over / Under 1.5",
+          "selection": "Over 1.5",
+          "probability": 93.2
+        },
+        {
+          "name": "Over / Under 2.5",
+          "selection": "Over 2.5",
+          "probability": 80.4
+        },
+        {
+          "name": "Over / Under 3.5",
+          "selection": "Over 3.5",
+          "probability": 62.5
+        },
+        {
+          "name": "Both teams to score",
+          "selection": "Yes",
+          "probability": 73.6
+        },
+        {
+          "name": "Correct score",
+          "selection": "2-1",
+          "probability": 8
+        },
+        {
+          "name": "Home team goals",
+          "selection": "Over 1.5",
+          "probability": 76.9
+        },
+        {
+          "name": "Away team goals",
+          "selection": "Over 0.5",
+          "probability": 78.1
+        }
+      ]
+    },
+    {
+      "id": "bl-2026-10-09-borussia-dortmund-sv-werder-bremen",
+      "league": "Bundesliga",
+      "leagueId": "BL",
+      "date": "2026-10-09",
+      "time": "20:30",
+      "home": "Borussia Dortmund",
+      "away": "SV Werder Bremen",
+      "xg": {
+        "home": 2.45,
+        "away": 1.31
+      },
+      "oneXTwo": {
+        "home": 62,
+        "draw": 19.3,
+        "away": 18.6
+      },
+      "confidence": "Early-season model",
+      "model": {
+        "weights": {
+          "strength": 0.4794691052183901,
+          "form": 0.2219506427373783,
+          "current": 0.16149548102483002,
+          "elo": 0.13708477101940159
+        },
+        "stage": 0.333,
+        "matchupReliability": 0.534,
+        "currentFormEvidence": 0.482,
+        "currentXgEvidence": 0,
+        "currentXgSignal": {
+          "home": {
+            "attack": 0,
+            "defense": 0,
+            "games": 0,
+            "reliability": 0
+          },
+          "away": {
+            "attack": 0,
+            "defense": 0,
+            "games": 0,
+            "reliability": 0
+          }
+        },
+        "componentXg": {
+          "strength": {
+            "home": 2.34,
+            "away": 1.13
+          },
+          "form": {
+            "home": 2.51,
+            "away": 1.79
+          },
+          "current": {
+            "home": 2.44,
+            "away": 1.58
+          },
+          "elo": {
+            "home": 2.8,
+            "away": 0.83
+          }
+        },
+        "restDays": {
+          "home": 14,
+          "away": 14,
+          "homeFatigue": 0,
+          "awayFatigue": 0,
+          "homeMatches21": 1,
+          "awayMatches21": 1
+        },
+        "marketCalibration": {
+          "available": false,
+          "weight": 0
+        },
+        "validation": {
+          "matches": 49,
+          "brier": 0.194,
+          "logLoss": 0.974,
+          "ece": 0.108
+        }
+      },
+      "markets": [
+        {
+          "name": "Match result (1X2)",
+          "selection": "Home",
+          "probability": 62
+        },
+        {
+          "name": "Double chance",
+          "selection": "1X",
+          "probability": 81.4
+        },
+        {
+          "name": "Draw no bet",
+          "selection": "Home",
+          "probability": 76.9
+        },
+        {
+          "name": "Over / Under 1.5",
+          "selection": "Over 1.5",
+          "probability": 89.4
+        },
+        {
+          "name": "Over / Under 2.5",
+          "selection": "Over 2.5",
+          "probability": 72.5
+        },
+        {
+          "name": "Over / Under 3.5",
+          "selection": "Over 3.5",
+          "probability": 51.9
+        },
+        {
+          "name": "Both teams to score",
+          "selection": "Yes",
+          "probability": 67.2
+        },
+        {
+          "name": "Correct score",
+          "selection": "2-1",
+          "probability": 9.2
+        },
+        {
+          "name": "Home team goals",
+          "selection": "Over 1.5",
+          "probability": 70.3
+        },
+        {
+          "name": "Away team goals",
+          "selection": "Over 0.5",
+          "probability": 73
+        }
+      ]
+    },
+    {
+      "id": "l1-2026-10-09-racing-club-de-lens-olympique-lyonnais",
+      "league": "Ligue 1",
+      "leagueId": "L1",
+      "date": "2026-10-09",
+      "time": "20:45",
+      "home": "Racing Club de Lens",
+      "away": "Olympique Lyonnais",
+      "xg": {
+        "home": 1.69,
+        "away": 1.38
+      },
+      "oneXTwo": {
+        "home": 44.4,
+        "draw": 25,
+        "away": 30.7
+      },
+      "confidence": "Early-season model",
+      "model": {
+        "weights": {
+          "strength": 0.45673423206908603,
+          "form": 0.24050376605927276,
+          "current": 0.16978716394010038,
+          "elo": 0.13297483793154088
+        },
+        "stage": 0.417,
+        "matchupReliability": 0.566,
+        "currentFormEvidence": 0.52,
+        "currentXgEvidence": 0,
+        "currentXgSignal": {
+          "home": {
+            "attack": 0,
+            "defense": 0,
+            "games": 0,
+            "reliability": 0
+          },
+          "away": {
+            "attack": 0,
+            "defense": 0,
+            "games": 0,
+            "reliability": 0
+          }
+        },
+        "componentXg": {
+          "strength": {
+            "home": 1.43,
+            "away": 1.45
+          },
+          "form": {
+            "home": 2.1,
+            "away": 1.33
+          },
+          "current": {
+            "home": 1.9,
+            "away": 1.38
+          },
+          "elo": {
+            "home": 1.61,
+            "away": 1.21
+          }
+        },
+        "restDays": {
+          "home": 14,
+          "away": 14,
+          "homeFatigue": 0,
+          "awayFatigue": 0,
+          "homeMatches21": 1,
+          "awayMatches21": 1
+        },
+        "marketCalibration": {
+          "available": false,
+          "weight": 0
+        },
+        "validation": {
+          "matches": 50,
+          "brier": 0.211,
+          "logLoss": 1.051,
+          "ece": 0.111
+        }
+      },
+      "markets": [
+        {
+          "name": "Match result (1X2)",
+          "selection": "Home",
+          "probability": 44.4
+        },
+        {
+          "name": "Double chance",
+          "selection": "12",
+          "probability": 75
+        },
+        {
+          "name": "Draw no bet",
+          "selection": "Home",
+          "probability": 59.1
+        },
+        {
+          "name": "Over / Under 1.5",
+          "selection": "Over 1.5",
+          "probability": 81.8
+        },
+        {
+          "name": "Over / Under 2.5",
+          "selection": "Over 2.5",
+          "probability": 59.3
+        },
+        {
+          "name": "Over / Under 3.5",
+          "selection": "Under 3.5",
+          "probability": 63.1
+        },
+        {
+          "name": "Both teams to score",
+          "selection": "Yes",
+          "probability": 61.7
+        },
+        {
+          "name": "Correct score",
+          "selection": "1-1",
+          "probability": 11.5
+        },
+        {
+          "name": "Home team goals",
+          "selection": "Over 1.5",
+          "probability": 50.5
+        },
+        {
+          "name": "Away team goals",
+          "selection": "Over 0.5",
+          "probability": 74.8
+        }
+      ]
+    },
+    {
+      "id": "ll-2026-10-09-m-laga-cf-rcd-espanyol-de-barcelona",
+      "league": "La Liga",
+      "leagueId": "LL",
+      "date": "2026-10-09",
+      "time": "21:00",
+      "home": "Málaga CF",
+      "away": "RCD Espanyol de Barcelona",
+      "xg": {
+        "home": 1.46,
+        "away": 1.24
+      },
+      "oneXTwo": {
+        "home": 41.6,
+        "draw": 27.1,
+        "away": 31.3
+      },
+      "confidence": "Early-season model",
+      "model": {
+        "weights": {
+          "strength": 0.4040910896266355,
+          "form": 0.26842453149368506,
+          "current": 0.2041597853239434,
+          "elo": 0.12332459355573609
+        },
+        "stage": 0.575,
+        "matchupReliability": 0.445,
+        "currentFormEvidence": 0.577,
+        "currentXgEvidence": 0.273,
+        "currentXgSignal": {
+          "home": {
+            "attack": -0.27,
+            "defense": 0.057,
+            "games": 4,
+            "reliability": 0.546
+          },
+          "away": {
+            "attack": 0,
+            "defense": 0,
+            "games": 0,
+            "reliability": 0
+          }
+        },
+        "componentXg": {
+          "strength": {
+            "home": 1.49,
+            "away": 1.32
+          },
+          "form": {
+            "home": 1.32,
+            "away": 1.16
+          },
+          "current": {
+            "home": 1.37,
+            "away": 1.22
+          },
+          "elo": {
+            "home": 1.8,
+            "away": 1.18
+          }
+        },
+        "restDays": {
+          "home": 14,
+          "away": 14,
+          "homeFatigue": 0,
+          "awayFatigue": 0,
+          "homeMatches21": 1,
+          "awayMatches21": 1
+        },
+        "marketCalibration": {
+          "available": false,
+          "weight": 0
+        },
+        "validation": {
+          "matches": 47,
+          "brier": 0.209,
+          "logLoss": 1.044,
+          "ece": 0.119
+        }
+      },
+      "markets": [
+        {
+          "name": "Match result (1X2)",
+          "selection": "Home",
+          "probability": 41.6
+        },
+        {
+          "name": "Double chance",
+          "selection": "12",
+          "probability": 72.9
+        },
+        {
+          "name": "Draw no bet",
+          "selection": "Home",
+          "probability": 57
+        },
+        {
+          "name": "Over / Under 1.5",
+          "selection": "Over 1.5",
+          "probability": 75.8
+        },
+        {
+          "name": "Over / Under 2.5",
+          "selection": "Over 2.5",
+          "probability": 50.6
+        },
+        {
+          "name": "Over / Under 3.5",
+          "selection": "Under 3.5",
+          "probability": 71.5
+        },
+        {
+          "name": "Both teams to score",
+          "selection": "Yes",
+          "probability": 55.2
+        },
+        {
+          "name": "Correct score",
+          "selection": "1-1",
+          "probability": 12.9
+        },
+        {
+          "name": "Home team goals",
+          "selection": "Under 1.5",
+          "probability": 57.1
+        },
+        {
+          "name": "Away team goals",
+          "selection": "Over 0.5",
+          "probability": 71
+        }
+      ]
+    }
+  ]
 }
