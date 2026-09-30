@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T11:21:45.566Z",
+  "generatedAt": "2026-09-30T11:09:52.009Z",
   "season": "2026-27",
   "source": "OpenFootball public match data, calibrated with football-data.co.uk public pre-match odds when a fixture is matched",
   "methodology": "Opponent-adjusted Poisson attack and defence ratings use time-decayed results, current-season weighting, and strong small-sample regularisation. A team-specific home edge is fitted with heavy shrinkage toward league average. Established clubs retain their multi-season evidence, while promoted teams receive a conservative division-transition prior until enough top-flight matches are played. Residual form is opponent-adjusted, rest accounts non-linearly for short turnaround and 10/21-day congestion, and season-regressed Elo plus ensemble weights adapt to matchweek evidence. Final 1X2 probabilities combine the low-score-corrected Poisson forecast with normalized public pre-match market probabilities only when matching odds are available; the blend weight is selected from out-of-sample historical results and shrunk to prevent overfitting. Fixtures without a reliable market match use the statistical model alone.",
@@ -209,26 +209,26 @@
       "home": "PSV",
       "away": "SC Heerenveen",
       "xg": {
-        "home": 2.74,
+        "home": 2.73,
         "away": 1.52
       },
       "oneXTwo": {
-        "home": 62.9,
-        "draw": 17.9,
-        "away": 19.3
+        "home": 62.6,
+        "draw": 18,
+        "away": 19.5
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4288687091589982,
-          "form": 0.259510212590329,
-          "current": 0.18374113742779252,
-          "elo": 0.12787994082288032
+          "strength": 0.4300778118374536,
+          "form": 0.2590263691122271,
+          "current": 0.18265534835974856,
+          "elo": 0.12824047069057076
         },
         "stage": 0.583,
         "matchupReliability": 0.613,
-        "currentFormEvidence": 0.533,
-        "currentXgEvidence": 0.161,
+        "currentFormEvidence": 0.528,
+        "currentXgEvidence": 0.158,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -238,9 +238,9 @@
           },
           "away": {
             "attack": -0.034,
-            "defense": -0.148,
+            "defense": -0.146,
             "games": 2,
-            "reliability": 0.322
+            "reliability": 0.317
           }
         },
         "componentXg": {
@@ -249,11 +249,11 @@
             "away": 1.63
           },
           "form": {
-            "home": 3.64,
+            "home": 3.61,
             "away": 1.46
           },
           "current": {
-            "home": 3.17,
+            "home": 3.15,
             "away": 1.51
           },
           "elo": {
@@ -284,17 +284,17 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 62.9
+          "probability": 62.6
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 82.1
+          "probability": 82
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 76.5
+          "probability": 76.3
         },
         {
           "name": "Over / Under 1.5",
@@ -304,17 +304,17 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 79.8
+          "probability": 79.6
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 61.5
+          "probability": 61.3
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 73.5
+          "probability": 73.4
         },
         {
           "name": "Correct score",
@@ -324,7 +324,7 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 75.9
+          "probability": 75.6
         },
         {
           "name": "Away team goals",
@@ -346,21 +346,21 @@
         "away": 1.3
       },
       "oneXTwo": {
-        "home": 62.2,
+        "home": 62.3,
         "draw": 19.3,
-        "away": 18.5
+        "away": 18.4
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.48425158146093933,
-          "form": 0.21969652068041853,
-          "current": 0.15759977145913337,
-          "elo": 0.13845212639950888
+          "strength": 0.48545785984650824,
+          "form": 0.21912796611206473,
+          "current": 0.15661716119465477,
+          "elo": 0.13879701284677234
         },
         "stage": 0.333,
         "matchupReliability": 0.534,
-        "currentFormEvidence": 0.461,
+        "currentFormEvidence": 0.456,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -382,7 +382,7 @@
             "away": 1.13
           },
           "form": {
-            "home": 2.5,
+            "home": 2.49,
             "away": 1.77
           },
           "current": {
@@ -417,22 +417,22 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 62.2
+          "probability": 62.3
         },
         {
           "name": "Double chance",
           "selection": "1X",
-          "probability": 81.5
+          "probability": 81.6
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 77.1
+          "probability": 77.2
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 89.3
+          "probability": 89.2
         },
         {
           "name": "Over / Under 2.5",
@@ -442,12 +442,12 @@
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 51.6
+          "probability": 51.5
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 66.9
+          "probability": 66.8
         },
         {
           "name": "Correct score",
@@ -462,7 +462,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 72.7
+          "probability": 72.6
         }
       ]
     },
@@ -475,25 +475,25 @@
       "home": "Racing Club de Lens",
       "away": "Olympique Lyonnais",
       "xg": {
-        "home": 1.68,
+        "home": 1.67,
         "away": 1.38
       },
       "oneXTwo": {
-        "home": 43.9,
+        "home": 43.7,
         "draw": 25.1,
         "away": 31.1
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.46127438882051075,
-          "form": 0.23841881165641357,
-          "current": 0.16601012809228197,
-          "elo": 0.13429667143079382
+          "strength": 0.46242409756953895,
+          "form": 0.23789083642350117,
+          "current": 0.16505366526569176,
+          "elo": 0.13463140074126817
         },
         "stage": 0.417,
         "matchupReliability": 0.566,
-        "currentFormEvidence": 0.499,
+        "currentFormEvidence": 0.494,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -519,7 +519,7 @@
             "away": 1.34
           },
           "current": {
-            "home": 1.86,
+            "home": 1.85,
             "away": 1.39
           },
           "elo": {
@@ -550,7 +550,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 43.9
+          "probability": 43.7
         },
         {
           "name": "Double chance",
@@ -560,17 +560,17 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 58.5
+          "probability": 58.4
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 81.6
+          "probability": 81.5
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 58.9
+          "probability": 58.8
         },
         {
           "name": "Over / Under 3.5",
@@ -585,12 +585,12 @@
         {
           "name": "Correct score",
           "selection": "1-1",
-          "probability": 11.5
+          "probability": 11.6
         },
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 50.1
+          "probability": 50.2
         },
         {
           "name": "Away team goals",
@@ -612,28 +612,28 @@
         "away": 1.24
       },
       "oneXTwo": {
-        "home": 41.6,
-        "draw": 27.1,
+        "home": 41.7,
+        "draw": 27,
         "away": 31.3
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4086441392499807,
-          "form": 0.2666219369161013,
-          "current": 0.20001978468152706,
-          "elo": 0.12471413915239093
+          "strength": 0.4098052533817486,
+          "form": 0.2661620985363194,
+          "current": 0.19896414841022259,
+          "elo": 0.1250684996717095
         },
         "stage": 0.575,
         "matchupReliability": 0.445,
-        "currentFormEvidence": 0.557,
-        "currentXgEvidence": 0.261,
+        "currentFormEvidence": 0.552,
+        "currentXgEvidence": 0.258,
         "currentXgSignal": {
           "home": {
-            "attack": -0.258,
+            "attack": -0.255,
             "defense": 0.054,
             "games": 4,
-            "reliability": 0.523
+            "reliability": 0.517
           },
           "away": {
             "attack": 0,
@@ -648,7 +648,7 @@
             "away": 1.32
           },
           "form": {
-            "home": 1.33,
+            "home": 1.34,
             "away": 1.17
           },
           "current": {
@@ -683,12 +683,12 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 41.6
+          "probability": 41.7
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 72.9
+          "probability": 73
         },
         {
           "name": "Draw no bet",
@@ -708,7 +708,7 @@
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 71.3
+          "probability": 71.2
         },
         {
           "name": "Both teams to score",
@@ -741,32 +741,32 @@
       "home": "Arsenal FC",
       "away": "Leeds United FC",
       "xg": {
-        "home": 1.66,
+        "home": 1.65,
         "away": 1.16
       },
       "oneXTwo": {
-        "home": 48.2,
+        "home": 48.1,
         "draw": 25.7,
         "away": 26.1
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4313242312183211,
-          "form": 0.24796599022503846,
-          "current": 0.18880081802485385,
-          "elo": 0.13190896053178647
+          "strength": 0.4326189703574625,
+          "form": 0.24741174834763013,
+          "current": 0.18766435948470714,
+          "elo": 0.13230492181020004
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.503,
-        "currentXgEvidence": 0.211,
+        "currentFormEvidence": 0.498,
+        "currentXgEvidence": 0.208,
         "currentXgSignal": {
           "home": {
-            "attack": 0.062,
-            "defense": -0.218,
+            "attack": 0.061,
+            "defense": -0.215,
             "games": 3,
-            "reliability": 0.421
+            "reliability": 0.415
           },
           "away": {
             "attack": 0,
@@ -785,8 +785,8 @@
             "away": 1.27
           },
           "current": {
-            "home": 1.72,
-            "away": 1.28
+            "home": 1.71,
+            "away": 1.27
           },
           "elo": {
             "home": 1.95,
@@ -816,7 +816,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 48.2
+          "probability": 48.1
         },
         {
           "name": "Double chance",
@@ -836,17 +836,17 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 53.6
+          "probability": 53.4
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 68.7
+          "probability": 68.8
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 56.4
+          "probability": 56.3
         },
         {
           "name": "Correct score",
@@ -856,12 +856,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 50.7
+          "probability": 50.8
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 68.8
+          "probability": 68.7
         }
       ]
     },
@@ -875,24 +875,24 @@
       "away": "Athletic Club",
       "xg": {
         "home": 1.91,
-        "away": 1.11
+        "away": 1.12
       },
       "oneXTwo": {
-        "home": 55.4,
-        "draw": 23.4,
-        "away": 21.2
+        "home": 55.2,
+        "draw": 23.5,
+        "away": 21.3
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4323226058079121,
-          "form": 0.2614500992031264,
-          "current": 0.1742867226405848,
-          "elo": 0.1319405723483767
+          "strength": 0.43336524439904817,
+          "form": 0.2609979907360013,
+          "current": 0.17337798955744355,
+          "elo": 0.132258775307507
         },
         "stage": 0.575,
         "matchupReliability": 0.612,
-        "currentFormEvidence": 0.546,
+        "currentFormEvidence": 0.541,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -914,11 +914,11 @@
             "away": 1.3
           },
           "form": {
-            "home": 2.42,
-            "away": 0.88
+            "home": 2.41,
+            "away": 0.89
           },
           "current": {
-            "home": 2.04,
+            "home": 2.03,
             "away": 1
           },
           "elo": {
@@ -949,17 +949,17 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 55.4
+          "probability": 55.2
         },
         {
           "name": "Double chance",
           "selection": "1X",
-          "probability": 78.8
+          "probability": 78.7
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 72.3
+          "probability": 72.1
         },
         {
           "name": "Over / Under 1.5",
@@ -969,12 +969,12 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 58.3
+          "probability": 58.2
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 64.1
+          "probability": 64.2
         },
         {
           "name": "Both teams to score",
@@ -984,12 +984,12 @@
         {
           "name": "Correct score",
           "selection": "1-1",
-          "probability": 10.9
+          "probability": 11
         },
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 57
+          "probability": 56.9
         },
         {
           "name": "Away team goals",
@@ -1007,32 +1007,32 @@
       "home": "Sunderland AFC",
       "away": "Brighton & Hove Albion FC",
       "xg": {
-        "home": 1.78,
+        "home": 1.77,
         "away": 1.83
       },
       "oneXTwo": {
-        "home": 37.4,
-        "draw": 22.9,
-        "away": 39.6
+        "home": 37.3,
+        "draw": 23,
+        "away": 39.7
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.43163956674847687,
-          "form": 0.24785313565590383,
-          "current": 0.18850190014007356,
-          "elo": 0.13200539745554588
+          "strength": 0.4329355925712055,
+          "form": 0.24729829160950165,
+          "current": 0.1873643635876296,
+          "elo": 0.13240175223166314
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.502,
-        "currentXgEvidence": 0.209,
+        "currentFormEvidence": 0.497,
+        "currentXgEvidence": 0.206,
         "currentXgSignal": {
           "home": {
-            "attack": 0.077,
-            "defense": -0.007,
+            "attack": 0.076,
+            "defense": -0.006,
             "games": 3,
-            "reliability": 0.418
+            "reliability": 0.412
           },
           "away": {
             "attack": 0,
@@ -1047,11 +1047,11 @@
             "away": 1.76
           },
           "form": {
-            "home": 2.3,
+            "home": 2.29,
             "away": 2.12
           },
           "current": {
-            "home": 1.97,
+            "home": 1.96,
             "away": 1.99
           },
           "elo": {
@@ -1082,47 +1082,47 @@
         {
           "name": "Match result (1X2)",
           "selection": "Away",
-          "probability": 39.6
+          "probability": 39.7
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 77.1
+          "probability": 77
         },
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 51.4
+          "probability": 51.5
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 88.1
+          "probability": 88
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 70
+          "probability": 69.8
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 51.2
+          "probability": 51.4
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 70.4
+          "probability": 70.2
         },
         {
           "name": "Correct score",
           "selection": "1-1",
-          "probability": 9.3
+          "probability": 9.4
         },
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 53.1
+          "probability": 52.9
         },
         {
           "name": "Away team goals",
@@ -1144,34 +1144,34 @@
         "away": 1.26
       },
       "oneXTwo": {
-        "home": 45.2,
+        "home": 45.1,
         "draw": 25.8,
-        "away": 29
+        "away": 29.1
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.41280850631075144,
-          "form": 0.2523010771359273,
-          "current": 0.20864399443063641,
-          "elo": 0.12624642212268472
+          "strength": 0.41422980124083575,
+          "form": 0.251727142445889,
+          "current": 0.20736196921406702,
+          "elo": 0.12668108709920822
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.502,
-        "currentXgEvidence": 0.437,
+        "currentFormEvidence": 0.497,
+        "currentXgEvidence": 0.431,
         "currentXgSignal": {
           "home": {
-            "attack": -0.146,
-            "defense": 0.105,
+            "attack": -0.144,
+            "defense": 0.103,
             "games": 3,
-            "reliability": 0.425
+            "reliability": 0.419
           },
           "away": {
-            "attack": -0.05,
+            "attack": -0.049,
             "defense": -0.033,
             "games": 3,
-            "reliability": 0.449
+            "reliability": 0.443
           }
         },
         "componentXg": {
@@ -1180,11 +1180,11 @@
             "away": 1.45
           },
           "form": {
-            "home": 1.57,
+            "home": 1.58,
             "away": 1.07
           },
           "current": {
-            "home": 1.56,
+            "home": 1.57,
             "away": 1.15
           },
           "elo": {
@@ -1215,7 +1215,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 45.2
+          "probability": 45.1
         },
         {
           "name": "Double chance",
@@ -1225,27 +1225,27 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 60.9
+          "probability": 60.8
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 78.9
+          "probability": 79
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 54.9
+          "probability": 55
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 67.4
+          "probability": 67.3
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 58.1
+          "probability": 58.2
         },
         {
           "name": "Correct score",
@@ -1260,7 +1260,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 71.6
+          "probability": 71.7
         }
       ]
     },
@@ -1277,22 +1277,22 @@
         "away": 1.27
       },
       "oneXTwo": {
-        "home": 38.5,
+        "home": 38.4,
         "draw": 27.6,
         "away": 33.9
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.42943353664106276,
-          "form": 0.24834301950367377,
-          "current": 0.19089270160642582,
-          "elo": 0.13133074224883776
+          "strength": 0.4307227972732127,
+          "form": 0.24779094902393264,
+          "current": 0.18976122563019224,
+          "elo": 0.13172502807266243
         },
         "stage": 0.417,
         "matchupReliability": 0.404,
-        "currentFormEvidence": 0.502,
-        "currentXgEvidence": 0.236,
+        "currentFormEvidence": 0.496,
+        "currentXgEvidence": 0.233,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -1304,7 +1304,7 @@
             "attack": -0.029,
             "defense": 0.064,
             "games": 4,
-            "reliability": 0.472
+            "reliability": 0.466
           }
         },
         "componentXg": {
@@ -1318,7 +1318,7 @@
           },
           "current": {
             "home": 1.31,
-            "away": 1.2
+            "away": 1.21
           },
           "elo": {
             "home": 1.5,
@@ -1348,7 +1348,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 38.5
+          "probability": 38.4
         },
         {
           "name": "Double chance",
@@ -1378,7 +1378,7 @@
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 54.3
+          "probability": 54.4
         },
         {
           "name": "Correct score",
@@ -1406,38 +1406,38 @@
       "home": "Aston Villa FC",
       "away": "Brentford FC",
       "xg": {
-        "home": 1.36,
-        "away": 1.43
+        "home": 1.37,
+        "away": 1.42
       },
       "oneXTwo": {
-        "home": 35.2,
+        "home": 35.3,
         "draw": 26.8,
-        "away": 38
+        "away": 37.9
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4230092014587221,
-          "form": 0.2498307252622612,
-          "current": 0.19779404183164861,
-          "elo": 0.12936603144736783
+          "strength": 0.4244003678945066,
+          "form": 0.24925796640838038,
+          "current": 0.19655018326603224,
+          "elo": 0.1297914824310807
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.501,
-        "currentXgEvidence": 0.314,
+        "currentFormEvidence": 0.496,
+        "currentXgEvidence": 0.309,
         "currentXgSignal": {
           "home": {
-            "attack": -0.18,
-            "defense": -0.028,
+            "attack": -0.177,
+            "defense": -0.027,
             "games": 1,
-            "reliability": 0.173
+            "reliability": 0.169
           },
           "away": {
-            "attack": -0.047,
+            "attack": -0.046,
             "defense": -0.011,
             "games": 3,
-            "reliability": 0.455
+            "reliability": 0.449
           }
         },
         "componentXg": {
@@ -1481,7 +1481,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Away",
-          "probability": 38
+          "probability": 37.9
         },
         {
           "name": "Double chance",
@@ -1491,7 +1491,7 @@
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 51.9
+          "probability": 51.8
         },
         {
           "name": "Over / Under 1.5",
@@ -1526,7 +1526,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 76
+          "probability": 75.9
         }
       ]
     },
@@ -1539,7 +1539,7 @@
       "home": "Genoa CFC",
       "away": "ACF Fiorentina",
       "xg": {
-        "home": 1.24,
+        "home": 1.25,
         "away": 1.26
       },
       "oneXTwo": {
@@ -1550,14 +1550,14 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.46475605111577634,
-          "form": 0.23268332090647603,
-          "current": 0.16460782885284253,
-          "elo": 0.1379527991249051
+          "strength": 0.465893461988303,
+          "form": 0.23215961536098767,
+          "current": 0.16365650766637965,
+          "elo": 0.13829041498432953
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.501,
+        "currentFormEvidence": 0.496,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -1579,11 +1579,11 @@
             "away": 1.38
           },
           "form": {
-            "home": 0.9,
-            "away": 1.04
+            "home": 0.91,
+            "away": 1.05
           },
           "current": {
-            "home": 1.06,
+            "home": 1.07,
             "away": 1.16
           },
           "elo": {
@@ -1629,22 +1629,22 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 72.1
+          "probability": 72.2
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Under 2.5",
-          "probability": 54.3
+          "probability": 54.2
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 75.7
+          "probability": 75.6
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 51.7
+          "probability": 51.8
         },
         {
           "name": "Correct score",
@@ -1654,12 +1654,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 64.7
+          "probability": 64.6
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 71.6
+          "probability": 71.7
         }
       ]
     },
@@ -1672,7 +1672,7 @@
       "home": "1. FSV Mainz 05",
       "away": "Bayer 04 Leverkusen",
       "xg": {
-        "home": 2.27,
+        "home": 2.26,
         "away": 1.65
       },
       "oneXTwo": {
@@ -1683,14 +1683,14 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4840465756747202,
-          "form": 0.2197931459517392,
-          "current": 0.15776676507538845,
-          "elo": 0.1383935132981523
+          "strength": 0.4852521866773671,
+          "form": 0.21922490594063326,
+          "current": 0.15678469844769985,
+          "elo": 0.1387382089342998
         },
         "stage": 0.333,
         "matchupReliability": 0.534,
-        "currentFormEvidence": 0.462,
+        "currentFormEvidence": 0.457,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -1712,12 +1712,12 @@
             "away": 1.51
           },
           "form": {
-            "home": 2.71,
-            "away": 1.96
+            "home": 2.69,
+            "away": 1.95
           },
           "current": {
-            "home": 2.49,
-            "away": 1.81
+            "home": 2.48,
+            "away": 1.8
           },
           "elo": {
             "home": 2.15,
@@ -1762,22 +1762,22 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 90.7
+          "probability": 90.6
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 75
+          "probability": 74.9
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 55.1
+          "probability": 54.9
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 73
+          "probability": 72.9
         },
         {
           "name": "Correct score",
@@ -1787,12 +1787,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 66.2
+          "probability": 66.1
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 80.9
+          "probability": 80.8
         }
       ]
     },
@@ -1816,14 +1816,14 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4844416006878214,
-          "form": 0.21960695901636867,
-          "current": 0.1574449855945963,
-          "elo": 0.13850645470121362
+          "strength": 0.48564847581702203,
+          "form": 0.2190381231851473,
+          "current": 0.1564618892346817,
+          "elo": 0.13885151176314908
         },
         "stage": 0.333,
         "matchupReliability": 0.373,
-        "currentFormEvidence": 0.46,
+        "currentFormEvidence": 0.455,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -1846,10 +1846,10 @@
           },
           "form": {
             "home": 1.68,
-            "away": 1.31
+            "away": 1.32
           },
           "current": {
-            "home": 1.75,
+            "home": 1.76,
             "away": 1.38
           },
           "elo": {
@@ -1943,20 +1943,20 @@
       },
       "oneXTwo": {
         "home": 48.2,
-        "draw": 23.1,
+        "draw": 23,
         "away": 28.7
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4843685836372608,
-          "form": 0.21964137410509169,
-          "current": 0.15750446382468078,
-          "elo": 0.13848557843296677
+          "strength": 0.4855751988630381,
+          "form": 0.2190726607740165,
+          "current": 0.15652157917690043,
+          "elo": 0.13883056118604503
         },
         "stage": 0.333,
         "matchupReliability": 0.373,
-        "currentFormEvidence": 0.46,
+        "currentFormEvidence": 0.455,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -1978,12 +1978,12 @@
             "away": 1.65
           },
           "form": {
-            "home": 1.59,
+            "home": 1.6,
             "away": 1.22
           },
           "current": {
-            "home": 1.72,
-            "away": 1.33
+            "home": 1.73,
+            "away": 1.34
           },
           "elo": {
             "home": 2.21,
@@ -2018,7 +2018,7 @@
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 76.9
+          "probability": 77
         },
         {
           "name": "Draw no bet",
@@ -2033,17 +2033,17 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 66.5
+          "probability": 66.6
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 55.3
+          "probability": 55.2
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 66.7
+          "probability": 66.8
         },
         {
           "name": "Correct score",
@@ -2053,12 +2053,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 58
+          "probability": 58.1
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 77.1
+          "probability": 77.2
         }
       ]
     },
@@ -2072,7 +2072,7 @@
       "away": "Hamburger SV",
       "xg": {
         "home": 2.43,
-        "away": 1.09
+        "away": 1.1
       },
       "oneXTwo": {
         "home": 66.2,
@@ -2082,14 +2082,14 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.48388644793500996,
-          "form": 0.21986861887658105,
-          "current": 0.15789720193187964,
-          "elo": 0.13834773125652935
+          "strength": 0.48509153068113275,
+          "form": 0.21930062784834975,
+          "current": 0.15691556561139805,
+          "elo": 0.1386922758591194
         },
         "stage": 0.333,
         "matchupReliability": 0.534,
-        "currentFormEvidence": 0.462,
+        "currentFormEvidence": 0.457,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -2111,12 +2111,12 @@
             "away": 1.29
           },
           "form": {
-            "home": 2.17,
-            "away": 0.77
+            "home": 2.18,
+            "away": 0.78
           },
           "current": {
-            "home": 2.29,
-            "away": 0.91
+            "home": 2.3,
+            "away": 0.92
           },
           "elo": {
             "home": 2.5,
@@ -2156,27 +2156,27 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 81.6
+          "probability": 81.5
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 87.1
+          "probability": 87.2
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 68.3
+          "probability": 68.4
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 53.2
+          "probability": 53.1
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 61.1
+          "probability": 61.2
         },
         {
           "name": "Correct score",
@@ -2191,7 +2191,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 66.5
+          "probability": 66.6
         }
       ]
     },
@@ -2204,32 +2204,32 @@
       "home": "FC Augsburg",
       "away": "FC Bayern München",
       "xg": {
-        "home": 2.42,
-        "away": 1.95
+        "home": 2.41,
+        "away": 1.94
       },
       "oneXTwo": {
-        "home": 48.7,
-        "draw": 20,
-        "away": 31.3
+        "home": 48.5,
+        "draw": 20.1,
+        "away": 31.4
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.47583086478373515,
-          "form": 0.2218938165228242,
-          "current": 0.16623075516909977,
-          "elo": 0.1360445635243409
+          "strength": 0.4771587102442149,
+          "form": 0.22129787710900742,
+          "current": 0.1651192054938529,
+          "elo": 0.1364242071529249
         },
         "stage": 0.333,
         "matchupReliability": 0.534,
-        "currentFormEvidence": 0.461,
-        "currentXgEvidence": 0.085,
+        "currentFormEvidence": 0.456,
+        "currentXgEvidence": 0.083,
         "currentXgSignal": {
           "home": {
-            "attack": 0.071,
+            "attack": 0.07,
             "defense": 0.009,
             "games": 1,
-            "reliability": 0.169
+            "reliability": 0.166
           },
           "away": {
             "attack": 0,
@@ -2244,11 +2244,11 @@
             "away": 1.89
           },
           "form": {
-            "home": 3.45,
-            "away": 2.03
+            "home": 3.43,
+            "away": 2.02
           },
           "current": {
-            "home": 2.89,
+            "home": 2.86,
             "away": 2.04
           },
           "elo": {
@@ -2279,17 +2279,17 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 48.7
+          "probability": 48.5
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 80
+          "probability": 79.9
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 60.9
+          "probability": 60.7
         },
         {
           "name": "Over / Under 1.5",
@@ -2299,27 +2299,27 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 81.1
+          "probability": 80.9
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 63.4
+          "probability": 63.2
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 78.5
+          "probability": 78.3
         },
         {
           "name": "Correct score",
           "selection": "2-1",
-          "probability": 7.2
+          "probability": 7.3
         },
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 69.6
+          "probability": 69.4
         },
         {
           "name": "Away team goals",
@@ -2338,24 +2338,24 @@
       "away": "Club Atlético de Madrid",
       "xg": {
         "home": 1.53,
-        "away": 1.61
+        "away": 1.6
       },
       "oneXTwo": {
-        "home": 35.8,
+        "home": 35.9,
         "draw": 25,
-        "away": 39.3
+        "away": 39.1
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.43053471179750663,
-          "form": 0.26222536498294546,
-          "current": 0.1758449983942525,
-          "elo": 0.13139492482529544
+          "strength": 0.43156539984801273,
+          "form": 0.26177843850376087,
+          "current": 0.1749466810502986,
+          "elo": 0.13170948059792792
         },
         "stage": 0.575,
         "matchupReliability": 0.623,
-        "currentFormEvidence": 0.555,
+        "currentFormEvidence": 0.55,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -2378,11 +2378,11 @@
           },
           "form": {
             "home": 1.49,
-            "away": 2.03
+            "away": 2.02
           },
           "current": {
             "home": 1.53,
-            "away": 1.77
+            "away": 1.76
           },
           "elo": {
             "home": 1.55,
@@ -2412,7 +2412,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Away",
-          "probability": 39.3
+          "probability": 39.1
         },
         {
           "name": "Double chance",
@@ -2422,7 +2422,7 @@
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 52.3
+          "probability": 52.2
         },
         {
           "name": "Over / Under 1.5",
@@ -2432,12 +2432,12 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 60.6
+          "probability": 60.5
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 61.7
+          "probability": 61.8
         },
         {
           "name": "Both teams to score",
@@ -2457,7 +2457,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 80
+          "probability": 79.9
         }
       ]
     },
@@ -2474,34 +2474,34 @@
         "away": 1.64
       },
       "oneXTwo": {
-        "home": 42.7,
+        "home": 42.8,
         "draw": 23.3,
         "away": 34
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4147502245487415,
-          "form": 0.2623518381977291,
-          "current": 0.19922784186331957,
-          "elo": 0.12367009539020966
+          "strength": 0.4160942579917675,
+          "form": 0.26184784143252576,
+          "current": 0.19798704170360246,
+          "elo": 0.12407085887210413
         },
         "stage": 0.583,
         "matchupReliability": 0.615,
-        "currentFormEvidence": 0.532,
-        "currentXgEvidence": 0.339,
+        "currentFormEvidence": 0.527,
+        "currentXgEvidence": 0.334,
         "currentXgSignal": {
           "home": {
             "attack": 0.031,
-            "defense": -0.219,
+            "defense": -0.216,
             "games": 2,
-            "reliability": 0.347
+            "reliability": 0.341
           },
           "away": {
-            "attack": -0.158,
+            "attack": -0.155,
             "defense": -0.006,
             "games": 2,
-            "reliability": 0.332
+            "reliability": 0.327
           }
         },
         "componentXg": {
@@ -2545,7 +2545,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 42.7
+          "probability": 42.8
         },
         {
           "name": "Double chance",
@@ -2570,7 +2570,7 @@
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 53.9
+          "probability": 53.8
         },
         {
           "name": "Both teams to score",
@@ -2614,15 +2614,15 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.44559238959049596,
-          "form": 0.24220731153578748,
-          "current": 0.18246932705472327,
-          "elo": 0.12973097181899346
+          "strength": 0.4469018724029321,
+          "form": 0.241650014292688,
+          "current": 0.1813358951225531,
+          "elo": 0.13011221818182683
         },
         "stage": 0.417,
         "matchupReliability": 0.566,
-        "currentFormEvidence": 0.5,
-        "currentXgEvidence": 0.167,
+        "currentFormEvidence": 0.495,
+        "currentXgEvidence": 0.164,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -2631,10 +2631,10 @@
             "reliability": 0
           },
           "away": {
-            "attack": 0.03,
-            "defense": 0.051,
+            "attack": 0.029,
+            "defense": 0.05,
             "games": 2,
-            "reliability": 0.334
+            "reliability": 0.329
           }
         },
         "componentXg": {
@@ -2698,12 +2698,12 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 51.2
+          "probability": 51.1
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 70.9
+          "probability": 71
         },
         {
           "name": "Both teams to score",
@@ -2718,7 +2718,7 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 50.6
+          "probability": 50.7
         },
         {
           "name": "Away team goals",
@@ -2747,14 +2747,14 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.450629373311988,
-          "form": 0.24333261523674238,
-          "current": 0.1682250904132506,
-          "elo": 0.13781292103801893
+          "strength": 0.45176720285505245,
+          "form": 0.2428045006207218,
+          "current": 0.16726740080399596,
+          "elo": 0.13816089572022966
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.502,
+        "currentFormEvidence": 0.497,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -2777,11 +2777,11 @@
           },
           "form": {
             "home": 1.66,
-            "away": 0.71
+            "away": 0.72
           },
           "current": {
             "home": 1.67,
-            "away": 0.81
+            "away": 0.82
           },
           "elo": {
             "home": 1.97,
@@ -2831,7 +2831,7 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Under 2.5",
-          "probability": 50.5
+          "probability": 50.4
         },
         {
           "name": "Over / Under 3.5",
@@ -2841,7 +2841,7 @@
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 50.5
+          "probability": 50.6
         },
         {
           "name": "Correct score",
@@ -2856,7 +2856,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 60.6
+          "probability": 60.7
         }
       ]
     },
@@ -2869,25 +2869,25 @@
       "home": "FC Internazionale Milano",
       "away": "Parma Calcio 1913",
       "xg": {
-        "home": 2.1,
+        "home": 2.09,
         "away": 1.05
       },
       "oneXTwo": {
-        "home": 60.8,
+        "home": 60.7,
         "draw": 21.6,
-        "away": 17.6
+        "away": 17.7
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.46420841388300904,
-          "form": 0.23293547310815052,
-          "current": 0.1650658681723279,
-          "elo": 0.13779024483651253
+          "strength": 0.4653431411051019,
+          "form": 0.23241300321342678,
+          "current": 0.1641167915692222,
+          "elo": 0.13812706411224895
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.504,
+        "currentFormEvidence": 0.499,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -2909,12 +2909,12 @@
             "away": 1.19
           },
           "form": {
-            "home": 2.48,
-            "away": 0.94
+            "home": 2.47,
+            "away": 0.95
           },
           "current": {
-            "home": 2.26,
-            "away": 1.02
+            "home": 2.25,
+            "away": 1.03
           },
           "elo": {
             "home": 1.97,
@@ -2944,22 +2944,22 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 60.8
+          "probability": 60.7
         },
         {
           "name": "Double chance",
           "selection": "1X",
-          "probability": 82.4
+          "probability": 82.3
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 77.5
+          "probability": 77.4
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 82.8
+          "probability": 82.7
         },
         {
           "name": "Over / Under 2.5",
@@ -2969,7 +2969,7 @@
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 61.4
+          "probability": 61.5
         },
         {
           "name": "Both teams to score",
@@ -2979,12 +2979,12 @@
         {
           "name": "Correct score",
           "selection": "1-1",
-          "probability": 10
+          "probability": 10.1
         },
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 62
+          "probability": 61.9
         },
         {
           "name": "Away team goals",
@@ -3002,7 +3002,7 @@
       "home": "FC Barcelona",
       "away": "Getafe CF",
       "xg": {
-        "home": 3.13,
+        "home": 3.12,
         "away": 0.89
       },
       "oneXTwo": {
@@ -3013,27 +3013,27 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.39890775724490274,
-          "form": 0.26872127597181344,
-          "current": 0.21062827487213004,
-          "elo": 0.12174269191115367
+          "strength": 0.4001798082487995,
+          "form": 0.26824608132092403,
+          "current": 0.2094432011664891,
+          "elo": 0.1221309092637874
         },
         "stage": 0.575,
         "matchupReliability": 0.623,
-        "currentFormEvidence": 0.561,
-        "currentXgEvidence": 0.379,
+        "currentFormEvidence": 0.556,
+        "currentXgEvidence": 0.374,
         "currentXgSignal": {
           "home": {
-            "attack": 0.419,
-            "defense": -0.248,
+            "attack": 0.414,
+            "defense": -0.245,
             "games": 4,
-            "reliability": 0.507
+            "reliability": 0.501
           },
           "away": {
-            "attack": -0.113,
-            "defense": -0.159,
+            "attack": -0.111,
+            "defense": -0.156,
             "games": 1,
-            "reliability": 0.252
+            "reliability": 0.247
           }
         },
         "componentXg": {
@@ -3117,7 +3117,7 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 81.9
+          "probability": 81.8
         },
         {
           "name": "Away team goals",
@@ -3139,21 +3139,21 @@
         "away": 1.49
       },
       "oneXTwo": {
-        "home": 55.7,
-        "draw": 20.6,
-        "away": 23.7
+        "home": 55.9,
+        "draw": 20.5,
+        "away": 23.6
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4838866878175965,
-          "form": 0.21986850581284548,
-          "current": 0.157897006528319,
-          "elo": 0.13834779984123916
+          "strength": 0.4850917686638504,
+          "form": 0.2193005156800784,
+          "current": 0.1569153717554326,
+          "elo": 0.13869234390063864
         },
         "stage": 0.333,
         "matchupReliability": 0.534,
-        "currentFormEvidence": 0.462,
+        "currentFormEvidence": 0.457,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -3180,7 +3180,7 @@
           },
           "current": {
             "home": 2.19,
-            "away": 1.68
+            "away": 1.67
           },
           "elo": {
             "home": 2.51,
@@ -3210,17 +3210,17 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 55.7
+          "probability": 55.9
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 79.4
+          "probability": 79.5
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 70.1
+          "probability": 70.3
         },
         {
           "name": "Over / Under 1.5",
@@ -3250,12 +3250,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 67.5
+          "probability": 67.6
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 77.6
+          "probability": 77.5
         }
       ]
     },
@@ -3268,25 +3268,25 @@
       "home": "Feyenoord Rotterdam",
       "away": "AZ",
       "xg": {
-        "home": 2.64,
-        "away": 2.12
+        "home": 2.62,
+        "away": 2.11
       },
       "oneXTwo": {
-        "home": 49.6,
-        "draw": 19,
-        "away": 31.4
+        "home": 49.4,
+        "draw": 19.1,
+        "away": 31.5
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.44282236304527084,
-          "form": 0.25661493022382253,
-          "current": 0.16852206965033315,
-          "elo": 0.1320406370805734
+          "strength": 0.4438815706053732,
+          "form": 0.25615405220803167,
+          "current": 0.16760790591897978,
+          "elo": 0.13235647126761552
         },
         "stage": 0.583,
         "matchupReliability": 0.615,
-        "currentFormEvidence": 0.532,
+        "currentFormEvidence": 0.527,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -3308,12 +3308,12 @@
             "away": 1.79
           },
           "form": {
-            "home": 3.87,
-            "away": 2.77
+            "home": 3.83,
+            "away": 2.75
           },
           "current": {
-            "home": 3.14,
-            "away": 2.42
+            "home": 3.11,
+            "away": 2.41
           },
           "elo": {
             "home": 2.02,
@@ -3343,52 +3343,52 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 49.6
+          "probability": 49.4
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 81
+          "probability": 80.9
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 61.2
+          "probability": 61.1
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 95.3
+          "probability": 95.2
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 85.3
+          "probability": 85.1
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 69.9
+          "probability": 69.5
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 82
+          "probability": 81.8
         },
         {
           "name": "Correct score",
           "selection": "2-2",
-          "probability": 6.7
+          "probability": 6.8
         },
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 74
+          "probability": 73.7
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 88
+          "probability": 87.9
         }
       ]
     },
@@ -3406,20 +3406,20 @@
       },
       "oneXTwo": {
         "home": 27.9,
-        "draw": 21.2,
-        "away": 50.9
+        "draw": 21.3,
+        "away": 50.8
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.44157391726137013,
-          "form": 0.2571581487934212,
-          "current": 0.16959955804750157,
-          "elo": 0.13166837589770727
+          "strength": 0.4426251369494501,
+          "form": 0.25670074642749025,
+          "current": 0.16869228835955233,
+          "elo": 0.13198182826350735
         },
         "stage": 0.583,
         "matchupReliability": 0.615,
-        "currentFormEvidence": 0.538,
+        "currentFormEvidence": 0.533,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -3441,12 +3441,12 @@
             "away": 2.03
           },
           "form": {
-            "home": 1.89,
-            "away": 2.56
+            "home": 1.88,
+            "away": 2.55
           },
           "current": {
-            "home": 1.75,
-            "away": 2.35
+            "home": 1.74,
+            "away": 2.34
           },
           "elo": {
             "home": 1.55,
@@ -3476,12 +3476,12 @@
         {
           "name": "Match result (1X2)",
           "selection": "Away",
-          "probability": 50.9
+          "probability": 50.8
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 78.8
+          "probability": 78.7
         },
         {
           "name": "Draw no bet",
@@ -3491,37 +3491,37 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 90.2
+          "probability": 90.1
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 74
+          "probability": 73.9
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 53.7
+          "probability": 53.6
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 72.2
+          "probability": 72.1
         },
         {
           "name": "Correct score",
           "selection": "1-2",
-          "probability": 8.5
+          "probability": 8.6
         },
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 51.5
+          "probability": 51.6
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 89.2
+          "probability": 89.1
         }
       ]
     },
@@ -3540,20 +3540,20 @@
       "oneXTwo": {
         "home": 46.1,
         "draw": 26,
-        "away": 27.9
+        "away": 27.8
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4509220946760371,
-          "form": 0.2361068340506668,
-          "current": 0.17912458342557033,
-          "elo": 0.1338464878477258
+          "strength": 0.45221267107407004,
+          "form": 0.23555368995762574,
+          "current": 0.1780040713819375,
+          "elo": 0.13422956758636664
         },
         "stage": 0.417,
         "matchupReliability": 0.404,
-        "currentFormEvidence": 0.503,
-        "currentXgEvidence": 0.146,
+        "currentFormEvidence": 0.498,
+        "currentXgEvidence": 0.144,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -3562,10 +3562,10 @@
             "reliability": 0
           },
           "away": {
-            "attack": -0.065,
-            "defense": 0.119,
+            "attack": -0.064,
+            "defense": 0.117,
             "games": 2,
-            "reliability": 0.293
+            "reliability": 0.288
           }
         },
         "componentXg": {
@@ -3575,11 +3575,11 @@
           },
           "form": {
             "home": 1.64,
-            "away": 1.41
+            "away": 1.4
           },
           "current": {
             "home": 1.59,
-            "away": 1.29
+            "away": 1.28
           },
           "elo": {
             "home": 1.78,
@@ -3619,12 +3619,12 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 62.3
+          "probability": 62.4
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 77.8
+          "probability": 77.7
         },
         {
           "name": "Over / Under 2.5",
@@ -3634,12 +3634,12 @@
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 68.9
+          "probability": 69
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 56.7
+          "probability": 56.6
         },
         {
           "name": "Correct score",
@@ -3654,7 +3654,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 70
+          "probability": 69.9
         }
       ]
     },
@@ -3671,21 +3671,21 @@
         "away": 1.13
       },
       "oneXTwo": {
-        "home": 46.4,
+        "home": 46.3,
         "draw": 26.7,
         "away": 27
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4606671087372004,
-          "form": 0.23869768997555288,
-          "current": 0.16651533502012847,
-          "elo": 0.1341198662671182
+          "strength": 0.46181383960198613,
+          "form": 0.23817108226213435,
+          "current": 0.16556134954754848,
+          "elo": 0.1344537285883311
         },
         "stage": 0.417,
         "matchupReliability": 0.566,
-        "currentFormEvidence": 0.502,
+        "currentFormEvidence": 0.497,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -3707,7 +3707,7 @@
             "away": 1.23
           },
           "form": {
-            "home": 1.7,
+            "home": 1.69,
             "away": 0.99
           },
           "current": {
@@ -3742,7 +3742,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 46.4
+          "probability": 46.3
         },
         {
           "name": "Double chance",
@@ -3752,7 +3752,7 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 63.2
+          "probability": 63.1
         },
         {
           "name": "Over / Under 1.5",
@@ -3787,7 +3787,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 67.7
+          "probability": 67.8
         }
       ]
     },
@@ -3804,28 +3804,28 @@
         "away": 1.3
       },
       "oneXTwo": {
-        "home": 37.7,
-        "draw": 27.5,
+        "home": 37.6,
+        "draw": 27.6,
         "away": 34.8
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.44358250093428503,
-          "form": 0.24270113313143526,
-          "current": 0.184570558527223,
-          "elo": 0.12914580740705672
+          "strength": 0.4448937468439185,
+          "form": 0.24214456749918253,
+          "current": 0.18343411857412878,
+          "elo": 0.12952756708277013
         },
         "stage": 0.417,
         "matchupReliability": 0.566,
-        "currentFormEvidence": 0.501,
-        "currentXgEvidence": 0.189,
+        "currentFormEvidence": 0.496,
+        "currentXgEvidence": 0.186,
         "currentXgSignal": {
           "home": {
-            "attack": -0.11,
-            "defense": -0.048,
+            "attack": -0.108,
+            "defense": -0.047,
             "games": 2,
-            "reliability": 0.377
+            "reliability": 0.372
           },
           "away": {
             "attack": 0,
@@ -3840,11 +3840,11 @@
             "away": 1.25
           },
           "form": {
-            "home": 1.46,
-            "away": 1.36
+            "home": 1.45,
+            "away": 1.35
           },
           "current": {
-            "home": 1.37,
+            "home": 1.36,
             "away": 1.34
           },
           "elo": {
@@ -3875,12 +3875,12 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 37.7
+          "probability": 37.6
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 72.5
+          "probability": 72.4
         },
         {
           "name": "Draw no bet",
@@ -3900,7 +3900,7 @@
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 72.4
+          "probability": 72.5
         },
         {
           "name": "Both teams to score",
@@ -3915,12 +3915,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 60.6
+          "probability": 60.7
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 72.7
+          "probability": 72.6
         }
       ]
     },
@@ -3937,22 +3937,22 @@
         "away": 1.12
       },
       "oneXTwo": {
-        "home": 54.9,
+        "home": 55,
         "draw": 23.6,
         "away": 21.5
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.44925245824081916,
-          "form": 0.24139114877893708,
-          "current": 0.17855981888880795,
-          "elo": 0.13079657409143586
+          "strength": 0.45054390535506733,
+          "form": 0.2408362901960451,
+          "current": 0.17744723495650197,
+          "elo": 0.13117256949238562
         },
         "stage": 0.417,
         "matchupReliability": 0.4,
-        "currentFormEvidence": 0.502,
-        "currentXgEvidence": 0.124,
+        "currentFormEvidence": 0.496,
+        "currentXgEvidence": 0.121,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -3961,10 +3961,10 @@
             "reliability": 0
           },
           "away": {
-            "attack": -0.098,
-            "defense": -0.053,
+            "attack": -0.096,
+            "defense": -0.052,
             "games": 1,
-            "reliability": 0.247
+            "reliability": 0.243
           }
         },
         "componentXg": {
@@ -3974,7 +3974,7 @@
           },
           "form": {
             "home": 1.9,
-            "away": 1.27
+            "away": 1.26
           },
           "current": {
             "home": 1.91,
@@ -4008,7 +4008,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 54.9
+          "probability": 55
         },
         {
           "name": "Double chance",
@@ -4048,12 +4048,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 56.6
+          "probability": 56.5
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 67.3
+          "probability": 67.2
         }
       ]
     },
@@ -4072,32 +4072,32 @@
       "oneXTwo": {
         "home": 48.9,
         "draw": 25,
-        "away": 26.1
+        "away": 26
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4376203918620094,
-          "form": 0.2440121519178927,
-          "current": 0.19095747335157964,
-          "elo": 0.1274099828685183
+          "strength": 0.4390249486550292,
+          "form": 0.24343629539015388,
+          "current": 0.18971984662796998,
+          "elo": 0.12781890932684692
         },
         "stage": 0.417,
         "matchupReliability": 0.565,
-        "currentFormEvidence": 0.498,
-        "currentXgEvidence": 0.262,
+        "currentFormEvidence": 0.493,
+        "currentXgEvidence": 0.258,
         "currentXgSignal": {
           "home": {
             "attack": 0.009,
-            "defense": -0.101,
+            "defense": -0.099,
             "games": 1,
-            "reliability": 0.147
+            "reliability": 0.144
           },
           "away": {
-            "attack": 0.074,
-            "defense": 0.036,
+            "attack": 0.072,
+            "defense": 0.035,
             "games": 2,
-            "reliability": 0.377
+            "reliability": 0.372
           }
         },
         "componentXg": {
@@ -4151,12 +4151,12 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 65.2
+          "probability": 65.3
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 79.8
+          "probability": 79.7
         },
         {
           "name": "Over / Under 2.5",
@@ -4176,7 +4176,7 @@
         {
           "name": "Correct score",
           "selection": "1-1",
-          "probability": 11.7
+          "probability": 11.8
         },
         {
           "name": "Home team goals",
@@ -4199,8 +4199,8 @@
       "home": "Real Madrid CF",
       "away": "Villarreal CF",
       "xg": {
-        "home": 2.32,
-        "away": 1.48
+        "home": 2.31,
+        "away": 1.47
       },
       "oneXTwo": {
         "home": 55.9,
@@ -4210,27 +4210,27 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4005936891528028,
-          "form": 0.26824716160776185,
-          "current": 0.20890192762782092,
-          "elo": 0.12225722161161436
+          "strength": 0.4018982246841786,
+          "form": 0.2677638180906994,
+          "current": 0.20768260430520646,
+          "elo": 0.12265535291991561
         },
         "stage": 0.575,
         "matchupReliability": 0.623,
-        "currentFormEvidence": 0.558,
-        "currentXgEvidence": 0.364,
+        "currentFormEvidence": 0.553,
+        "currentXgEvidence": 0.359,
         "currentXgSignal": {
           "home": {
-            "attack": 0.217,
-            "defense": -0.175,
+            "attack": 0.213,
+            "defense": -0.172,
             "games": 2,
-            "reliability": 0.334
+            "reliability": 0.329
           },
           "away": {
-            "attack": 0.321,
-            "defense": -0.285,
+            "attack": 0.316,
+            "defense": -0.281,
             "games": 2,
-            "reliability": 0.394
+            "reliability": 0.388
           }
         },
         "componentXg": {
@@ -4239,12 +4239,12 @@
             "away": 1.3
           },
           "form": {
-            "home": 2.64,
-            "away": 1.78
+            "home": 2.62,
+            "away": 1.77
           },
           "current": {
-            "home": 2.65,
-            "away": 1.75
+            "home": 2.64,
+            "away": 1.73
           },
           "elo": {
             "home": 2.03,
@@ -4289,22 +4289,22 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 89.7
+          "probability": 89.6
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 73.1
+          "probability": 72.9
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 52.6
+          "probability": 52.3
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 70.1
+          "probability": 69.9
         },
         {
           "name": "Correct score",
@@ -4314,12 +4314,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 67.4
+          "probability": 67.2
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 77.2
+          "probability": 77.1
         }
       ]
     },
@@ -4332,32 +4332,32 @@
       "home": "AFC Ajax",
       "away": "NEC",
       "xg": {
-        "home": 2.31,
+        "home": 2.3,
         "away": 1.63
       },
       "oneXTwo": {
-        "home": 52.6,
-        "draw": 20.7,
-        "away": 26.6
+        "home": 52.5,
+        "draw": 20.8,
+        "away": 26.7
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4342476833564096,
-          "form": 0.2590716129635309,
-          "current": 0.1771968619724501,
-          "elo": 0.1294838417076095
+          "strength": 0.43537380148215993,
+          "form": 0.25860462208119095,
+          "current": 0.1762019491699512,
+          "elo": 0.12981962726669802
         },
         "stage": 0.583,
         "matchupReliability": 0.615,
-        "currentFormEvidence": 0.547,
-        "currentXgEvidence": 0.064,
+        "currentFormEvidence": 0.542,
+        "currentXgEvidence": 0.062,
         "currentXgSignal": {
           "home": {
             "attack": 0.015,
             "defense": -0.033,
             "games": 1,
-            "reliability": 0.128
+            "reliability": 0.125
           },
           "away": {
             "attack": 0,
@@ -4372,12 +4372,12 @@
             "away": 1.65
           },
           "form": {
-            "home": 2.69,
+            "home": 2.68,
             "away": 1.62
           },
           "current": {
-            "home": 2.48,
-            "away": 1.67
+            "home": 2.47,
+            "away": 1.66
           },
           "elo": {
             "home": 2.09,
@@ -4407,17 +4407,17 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 52.6
+          "probability": 52.5
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 79.3
+          "probability": 79.2
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 66.4
+          "probability": 66.3
         },
         {
           "name": "Over / Under 1.5",
@@ -4427,12 +4427,12 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 75.3
+          "probability": 75.2
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 55.4
+          "probability": 55.3
         },
         {
           "name": "Both teams to score",
@@ -4447,7 +4447,7 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 67.1
+          "probability": 67
         },
         {
           "name": "Away team goals",
@@ -4476,21 +4476,21 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4258285737371008,
-          "form": 0.2605523114964086,
-          "current": 0.18664568059597994,
-          "elo": 0.12697343417051077
+          "strength": 0.427027781917666,
+          "form": 0.26007401439914285,
+          "current": 0.18556718998335153,
+          "elo": 0.1273310136998397
         },
         "stage": 0.583,
         "matchupReliability": 0.441,
-        "currentFormEvidence": 0.542,
-        "currentXgEvidence": 0.176,
+        "currentFormEvidence": 0.537,
+        "currentXgEvidence": 0.174,
         "currentXgSignal": {
           "home": {
-            "attack": 0.064,
+            "attack": 0.063,
             "defense": -0.015,
             "games": 3,
-            "reliability": 0.353
+            "reliability": 0.347
           },
           "away": {
             "attack": 0,
@@ -4510,7 +4510,7 @@
           },
           "current": {
             "home": 1.62,
-            "away": 1.51
+            "away": 1.52
           },
           "elo": {
             "home": 2.29,
@@ -4555,22 +4555,22 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 85.9
+          "probability": 86
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 66.1
+          "probability": 66.2
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 55.7
+          "probability": 55.6
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 67.3
+          "probability": 67.4
         },
         {
           "name": "Correct score",
@@ -4585,7 +4585,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 80.3
+          "probability": 80.4
         }
       ]
     },
@@ -4604,20 +4604,20 @@
       "oneXTwo": {
         "home": 35,
         "draw": 24.6,
-        "away": 40.5
+        "away": 40.4
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.44882468794777974,
-          "form": 0.23667617449529565,
-          "current": 0.181275219610918,
-          "elo": 0.1332239179460067
+          "strength": 0.4501195916097936,
+          "form": 0.236123291632163,
+          "current": 0.18014883461851408,
+          "elo": 0.13360828213952936
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.504,
-        "currentXgEvidence": 0.167,
+        "currentFormEvidence": 0.499,
+        "currentXgEvidence": 0.164,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -4626,10 +4626,10 @@
             "reliability": 0
           },
           "away": {
-            "attack": 0.164,
-            "defense": -0.136,
+            "attack": 0.161,
+            "defense": -0.134,
             "games": 2,
-            "reliability": 0.334
+            "reliability": 0.328
           }
         },
         "componentXg": {
@@ -4639,11 +4639,11 @@
           },
           "form": {
             "home": 1.77,
-            "away": 2.04
+            "away": 2.03
           },
           "current": {
             "home": 1.64,
-            "away": 1.91
+            "away": 1.9
           },
           "elo": {
             "home": 1.5,
@@ -4673,7 +4673,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Away",
-          "probability": 40.5
+          "probability": 40.4
         },
         {
           "name": "Double chance",
@@ -4683,27 +4683,27 @@
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 53.7
+          "probability": 53.6
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 83.7
+          "probability": 83.6
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 62.3
+          "probability": 62.1
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 59.9
+          "probability": 60.1
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 64.5
+          "probability": 64.3
         },
         {
           "name": "Correct score",
@@ -4713,12 +4713,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 54.4
+          "probability": 54.5
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 81.2
+          "probability": 81.1
         }
       ]
     },
@@ -4735,22 +4735,22 @@
         "away": 1.26
       },
       "oneXTwo": {
-        "home": 41.1,
-        "draw": 27,
-        "away": 31.8
+        "home": 41,
+        "draw": 27.1,
+        "away": 31.9
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4386138889325297,
-          "form": 0.24610084722065662,
-          "current": 0.18114695679999893,
-          "elo": 0.13413830704681468
+          "strength": 0.43990148123101486,
+          "form": 0.2455437408895727,
+          "current": 0.18002269522392825,
+          "elo": 0.1345320826554842
         },
         "stage": 0.417,
         "matchupReliability": 0.404,
-        "currentFormEvidence": 0.5,
-        "currentXgEvidence": 0.134,
+        "currentFormEvidence": 0.495,
+        "currentXgEvidence": 0.132,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -4760,9 +4760,9 @@
           },
           "away": {
             "attack": 0.01,
-            "defense": 0.082,
+            "defense": 0.08,
             "games": 2,
-            "reliability": 0.269
+            "reliability": 0.264
           }
         },
         "componentXg": {
@@ -4806,17 +4806,17 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 41.1
+          "probability": 41
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 73
+          "probability": 72.9
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 56.4
+          "probability": 56.3
         },
         {
           "name": "Over / Under 1.5",
@@ -4826,12 +4826,12 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 51
+          "probability": 50.9
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 71.1
+          "probability": 71.2
         },
         {
           "name": "Both teams to score",
@@ -4846,7 +4846,7 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 57.2
+          "probability": 57.3
         },
         {
           "name": "Away team goals",
@@ -4868,28 +4868,28 @@
         "away": 1.15
       },
       "oneXTwo": {
-        "home": 44,
+        "home": 43.9,
         "draw": 27.3,
-        "away": 28.7
+        "away": 28.8
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.43782621734206517,
-          "form": 0.2462753362061943,
-          "current": 0.18200102765839826,
-          "elo": 0.13389741879334205
+          "strength": 0.43911814547747247,
+          "form": 0.24571761212737558,
+          "current": 0.18087172199357884,
+          "elo": 0.13429252040157302
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.5,
-        "currentXgEvidence": 0.144,
+        "currentFormEvidence": 0.495,
+        "currentXgEvidence": 0.141,
         "currentXgSignal": {
           "home": {
-            "attack": 0.099,
-            "defense": 0.071,
+            "attack": 0.097,
+            "defense": 0.07,
             "games": 2,
-            "reliability": 0.288
+            "reliability": 0.283
           },
           "away": {
             "attack": 0,
@@ -4939,7 +4939,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 44
+          "probability": 43.9
         },
         {
           "name": "Double chance",
@@ -4949,7 +4949,7 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 60.5
+          "probability": 60.4
         },
         {
           "name": "Over / Under 1.5",
@@ -4969,7 +4969,7 @@
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 53.3
+          "probability": 53.4
         },
         {
           "name": "Correct score",
@@ -4979,12 +4979,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 56.6
+          "probability": 56.7
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 68.2
+          "probability": 68.3
         }
       ]
     },
@@ -4997,32 +4997,32 @@
       "home": "Elche CF",
       "away": "RC Celta de Vigo",
       "xg": {
-        "home": 1.76,
+        "home": 1.75,
         "away": 1.14
       },
       "oneXTwo": {
-        "home": 51.3,
-        "draw": 24.8,
-        "away": 23.9
+        "home": 51.1,
+        "draw": 24.9,
+        "away": 24
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4176558820953431,
-          "form": 0.264617571421223,
-          "current": 0.19026211277577326,
-          "elo": 0.1274644337076606
+          "strength": 0.4188388269105907,
+          "form": 0.2641471677741224,
+          "current": 0.18918854858018433,
+          "elo": 0.12782545673510246
         },
         "stage": 0.575,
         "matchupReliability": 0.623,
-        "currentFormEvidence": 0.552,
-        "currentXgEvidence": 0.16,
+        "currentFormEvidence": 0.547,
+        "currentXgEvidence": 0.158,
         "currentXgSignal": {
           "home": {
-            "attack": -0.197,
-            "defense": 0.304,
+            "attack": -0.194,
+            "defense": 0.299,
             "games": 2,
-            "reliability": 0.32
+            "reliability": 0.315
           },
           "away": {
             "attack": 0,
@@ -5037,12 +5037,12 @@
             "away": 1.37
           },
           "form": {
-            "home": 2.04,
+            "home": 2.03,
             "away": 0.85
           },
           "current": {
             "home": 1.82,
-            "away": 0.96
+            "away": 0.97
           },
           "elo": {
             "home": 1.73,
@@ -5072,17 +5072,17 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 51.3
+          "probability": 51.1
         },
         {
           "name": "Double chance",
           "selection": "1X",
-          "probability": 76.1
+          "probability": 76
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 68.2
+          "probability": 68
         },
         {
           "name": "Over / Under 1.5",
@@ -5102,7 +5102,7 @@
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 56.8
+          "probability": 56.9
         },
         {
           "name": "Correct score",
@@ -5112,12 +5112,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 52.4
+          "probability": 52.3
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 67.9
+          "probability": 68
         }
       ]
     },
@@ -5130,25 +5130,25 @@
       "home": "PEC Zwolle",
       "away": "SC Cambuur-Leeuwarden",
       "xg": {
-        "home": 1.45,
+        "home": 1.46,
         "away": 1.87
       },
       "oneXTwo": {
-        "home": 29.5,
+        "home": 29.6,
         "draw": 23.6,
         "away": 46.9
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.44317551344607287,
-          "form": 0.2564612688810148,
-          "current": 0.1682172783135956,
-          "elo": 0.1321459393593167
+          "strength": 0.444236841454088,
+          "form": 0.25599946822469194,
+          "current": 0.1673012845003496,
+          "elo": 0.13246240582087038
         },
         "stage": 0.583,
         "matchupReliability": 0.441,
-        "currentFormEvidence": 0.53,
+        "currentFormEvidence": 0.525,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -5215,27 +5215,27 @@
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 61.4
+          "probability": 61.3
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 85
+          "probability": 85.1
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 64.6
+          "probability": 64.7
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 57.5
+          "probability": 57.4
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 65.4
+          "probability": 65.5
         },
         {
           "name": "Correct score",
@@ -5245,7 +5245,7 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 57.3
+          "probability": 57.2
         },
         {
           "name": "Away team goals",
@@ -5263,25 +5263,25 @@
       "home": "Telstar 1963",
       "away": "ADO Den Haag",
       "xg": {
-        "home": 1.37,
+        "home": 1.38,
         "away": 1.67
       },
       "oneXTwo": {
-        "home": 31,
+        "home": 31.1,
         "draw": 25.1,
-        "away": 43.9
+        "away": 43.8
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4412999072183863,
-          "form": 0.2572773749108263,
-          "current": 0.16983604620407983,
-          "elo": 0.13158667166670762
+          "strength": 0.4423495013602912,
+          "form": 0.25682067984582857,
+          "current": 0.16893017946623493,
+          "elo": 0.13189963932764528
         },
         "stage": 0.583,
         "matchupReliability": 0.441,
-        "currentFormEvidence": 0.54,
+        "currentFormEvidence": 0.535,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -5303,11 +5303,11 @@
             "away": 1.61
           },
           "form": {
-            "home": 0.91,
+            "home": 0.92,
             "away": 1.77
           },
           "current": {
-            "home": 1.06,
+            "home": 1.07,
             "away": 1.72
           },
           "elo": {
@@ -5338,7 +5338,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Away",
-          "probability": 43.9
+          "probability": 43.8
         },
         {
           "name": "Double chance",
@@ -5348,7 +5348,7 @@
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 58.6
+          "probability": 58.5
         },
         {
           "name": "Over / Under 1.5",
@@ -5358,12 +5358,12 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 58.6
+          "probability": 58.7
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 63.8
+          "probability": 63.7
         },
         {
           "name": "Both teams to score",
@@ -5378,12 +5378,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 60.1
+          "probability": 60
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 81.2
+          "probability": 81.1
         }
       ]
     },
@@ -5396,32 +5396,32 @@
       "home": "US Lecce",
       "away": "Bologna FC 1909",
       "xg": {
-        "home": 1.15,
+        "home": 1.16,
         "away": 1.08
       },
       "oneXTwo": {
         "home": 36.7,
-        "draw": 30.5,
-        "away": 32.8
+        "draw": 30.4,
+        "away": 32.9
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.43890554823706013,
-          "form": 0.23914248908021846,
-          "current": 0.1916723271935424,
-          "elo": 0.1302796354891788
+          "strength": 0.4401698980362701,
+          "form": 0.23860251478361677,
+          "current": 0.1905726567518897,
+          "elo": 0.13065493042822326
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.506,
-        "currentXgEvidence": 0.278,
+        "currentFormEvidence": 0.501,
+        "currentXgEvidence": 0.275,
         "currentXgSignal": {
           "home": {
-            "attack": -0.276,
-            "defense": 0.206,
+            "attack": -0.273,
+            "defense": 0.204,
             "games": 5,
-            "reliability": 0.555
+            "reliability": 0.55
           },
           "away": {
             "attack": 0,
@@ -5436,12 +5436,12 @@
             "away": 1.3
           },
           "form": {
-            "home": 0.93,
-            "away": 0.71
+            "home": 0.94,
+            "away": 0.72
           },
           "current": {
             "home": 0.98,
-            "away": 0.83
+            "away": 0.84
           },
           "elo": {
             "home": 1.42,
@@ -5476,7 +5476,7 @@
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 69.5
+          "probability": 69.6
         },
         {
           "name": "Draw no bet",
@@ -5486,37 +5486,37 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 66.1
+          "probability": 66.3
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Under 2.5",
-          "probability": 61.4
+          "probability": 61.2
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 81.3
+          "probability": 81.2
         },
         {
           "name": "Both teams to score",
           "selection": "No",
-          "probability": 54
+          "probability": 53.9
         },
         {
           "name": "Correct score",
           "selection": "1-1",
-          "probability": 14.2
+          "probability": 14.1
         },
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 67.9
+          "probability": 67.8
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 65.9
+          "probability": 66.1
         }
       ]
     },
@@ -5533,34 +5533,34 @@
         "away": 1.19
       },
       "oneXTwo": {
-        "home": 48.1,
+        "home": 48.2,
         "draw": 25.4,
         "away": 26.4
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4252246753136746,
-          "form": 0.24228059298110646,
-          "current": 0.20627596795664938,
-          "elo": 0.12621876374856966
+          "strength": 0.42664677873836004,
+          "form": 0.24170928965335944,
+          "current": 0.2050030471630366,
+          "elo": 0.12664088444524374
         },
         "stage": 0.417,
         "matchupReliability": 0.404,
-        "currentFormEvidence": 0.502,
-        "currentXgEvidence": 0.453,
+        "currentFormEvidence": 0.497,
+        "currentXgEvidence": 0.447,
         "currentXgSignal": {
           "home": {
-            "attack": 0.106,
+            "attack": 0.105,
             "defense": -0.03,
             "games": 3,
-            "reliability": 0.46
+            "reliability": 0.454
           },
           "away": {
-            "attack": 0.095,
-            "defense": -0.046,
+            "attack": 0.094,
+            "defense": -0.045,
             "games": 3,
-            "reliability": 0.446
+            "reliability": 0.44
           }
         },
         "componentXg": {
@@ -5570,11 +5570,11 @@
           },
           "form": {
             "home": 1.69,
-            "away": 1.47
+            "away": 1.46
           },
           "current": {
-            "home": 1.71,
-            "away": 1.33
+            "home": 1.7,
+            "away": 1.32
           },
           "elo": {
             "home": 1.92,
@@ -5604,7 +5604,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 48.1
+          "probability": 48.2
         },
         {
           "name": "Double chance",
@@ -5619,22 +5619,22 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 78.9
+          "probability": 78.8
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 54.9
+          "probability": 54.8
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 67.5
+          "probability": 67.6
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 57.4
+          "probability": 57.3
         },
         {
           "name": "Correct score",
@@ -5644,12 +5644,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 50.2
+          "probability": 50.1
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 69.7
+          "probability": 69.6
         }
       ]
     },
@@ -5666,21 +5666,21 @@
         "away": 1.49
       },
       "oneXTwo": {
-        "home": 31.3,
+        "home": 31.4,
         "draw": 26.8,
-        "away": 41.9
+        "away": 41.8
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4608666431847606,
-          "form": 0.23860605872849694,
-          "current": 0.16634933882163322,
-          "elo": 0.13417795926510934
+          "strength": 0.46201435601322804,
+          "form": 0.23807900007260802,
+          "current": 0.16539453643628335,
+          "elo": 0.13451210747788075
         },
         "stage": 0.417,
         "matchupReliability": 0.566,
-        "currentFormEvidence": 0.501,
+        "currentFormEvidence": 0.496,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -5702,11 +5702,11 @@
             "away": 1.43
           },
           "form": {
-            "home": 0.92,
+            "home": 0.93,
             "away": 1.63
           },
           "current": {
-            "home": 1.08,
+            "home": 1.09,
             "away": 1.55
           },
           "elo": {
@@ -5737,7 +5737,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Away",
-          "probability": 41.9
+          "probability": 41.8
         },
         {
           "name": "Double chance",
@@ -5747,7 +5747,7 @@
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 57.2
+          "probability": 57.1
         },
         {
           "name": "Over / Under 1.5",
@@ -5757,7 +5757,7 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 51.8
+          "probability": 51.9
         },
         {
           "name": "Over / Under 3.5",
@@ -5777,12 +5777,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 64.2
+          "probability": 64.1
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 77.5
+          "probability": 77.4
         }
       ]
     },
@@ -5795,25 +5795,25 @@
       "home": "1. FC Köln",
       "away": "Borussia Mönchengladbach",
       "xg": {
-        "home": 2.23,
-        "away": 1.34
+        "home": 2.24,
+        "away": 1.35
       },
       "oneXTwo": {
         "home": 57,
-        "draw": 21.1,
-        "away": 22
+        "draw": 21,
+        "away": 21.9
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4845090446852561,
-          "form": 0.21957517067189677,
-          "current": 0.15739004706220644,
-          "elo": 0.13852573758064074
+          "strength": 0.4857161517223648,
+          "form": 0.21900622553564078,
+          "current": 0.15640676179474475,
+          "elo": 0.13887086094724974
         },
         "stage": 0.333,
         "matchupReliability": 0.534,
-        "currentFormEvidence": 0.46,
+        "currentFormEvidence": 0.455,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -5835,12 +5835,12 @@
             "away": 1.48
           },
           "form": {
-            "home": 1.71,
-            "away": 1.15
+            "home": 1.72,
+            "away": 1.16
           },
           "current": {
-            "home": 1.95,
-            "away": 1.26
+            "home": 1.96,
+            "away": 1.27
           },
           "elo": {
             "home": 2.35,
@@ -5875,7 +5875,7 @@
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 78.9
+          "probability": 79
         },
         {
           "name": "Draw no bet",
@@ -5890,17 +5890,17 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 69.3
+          "probability": 69.4
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 52.1
+          "probability": 51.9
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 66.5
+          "probability": 66.6
         },
         {
           "name": "Correct score",
@@ -5910,12 +5910,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 65.3
+          "probability": 65.4
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 73.9
+          "probability": 74
         }
       ]
     },
@@ -5928,7 +5928,7 @@
       "home": "Real Sociedad de Fútbol",
       "away": "RC Deportivo La Coruña",
       "xg": {
-        "home": 1.69,
+        "home": 1.7,
         "away": 1.2
       },
       "oneXTwo": {
@@ -5939,14 +5939,14 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.43073960089490526,
-          "form": 0.2621365210666132,
-          "current": 0.17566642309235594,
-          "elo": 0.13145745494612543
+          "strength": 0.4317716474203172,
+          "form": 0.26168900552616375,
+          "current": 0.17476692174169048,
+          "elo": 0.13177242531182848
         },
         "stage": 0.575,
         "matchupReliability": 0.445,
-        "currentFormEvidence": 0.554,
+        "currentFormEvidence": 0.549,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -6062,31 +6062,31 @@
       "away": "Manchester City FC",
       "xg": {
         "home": 1.63,
-        "away": 1.78
+        "away": 1.77
       },
       "oneXTwo": {
-        "home": 35,
-        "draw": 23.7,
-        "away": 41.3
+        "home": 35.1,
+        "draw": 23.8,
+        "away": 41.1
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.43340896794957623,
-          "form": 0.2473976997481443,
-          "current": 0.18664681089331817,
-          "elo": 0.13254652140896128
+          "strength": 0.43470759383936813,
+          "form": 0.24684112056694274,
+          "current": 0.1855076142477574,
+          "elo": 0.13294367134593157
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.502,
-        "currentXgEvidence": 0.19,
+        "currentFormEvidence": 0.496,
+        "currentXgEvidence": 0.187,
         "currentXgSignal": {
           "home": {
             "attack": 0.014,
-            "defense": -0.187,
+            "defense": -0.184,
             "games": 2,
-            "reliability": 0.381
+            "reliability": 0.375
           },
           "away": {
             "attack": 0,
@@ -6101,12 +6101,12 @@
             "away": 1.43
           },
           "form": {
-            "home": 1.88,
-            "away": 2.37
+            "home": 1.87,
+            "away": 2.35
           },
           "current": {
             "home": 1.75,
-            "away": 2.08
+            "away": 2.06
           },
           "elo": {
             "home": 1.47,
@@ -6136,37 +6136,37 @@
         {
           "name": "Match result (1X2)",
           "selection": "Away",
-          "probability": 41.3
+          "probability": 41.1
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 76.3
+          "probability": 76.2
         },
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 54.1
+          "probability": 53.9
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 86
+          "probability": 85.9
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 66.2
+          "probability": 66
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 55.6
+          "probability": 55.9
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 67.4
+          "probability": 67.2
         },
         {
           "name": "Correct score",
@@ -6176,12 +6176,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 51.5
+          "probability": 51.6
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 83.1
+          "probability": 83
         }
       ]
     },
@@ -6195,25 +6195,25 @@
       "away": "FC Groningen",
       "xg": {
         "home": 1.84,
-        "away": 1.78
+        "away": 1.79
       },
       "oneXTwo": {
-        "home": 39.8,
+        "home": 39.7,
         "draw": 22.9,
-        "away": 37.3
+        "away": 37.4
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.42961368625970486,
-          "form": 0.259529014390246,
-          "current": 0.18275522148261825,
-          "elo": 0.12810207786743083
+          "strength": 0.43081194476249896,
+          "form": 0.25904774470076125,
+          "current": 0.18168093631460808,
+          "elo": 0.1284593742221318
         },
         "stage": 0.583,
         "matchupReliability": 0.615,
-        "currentFormEvidence": 0.537,
-        "currentXgEvidence": 0.143,
+        "currentFormEvidence": 0.532,
+        "currentXgEvidence": 0.141,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -6222,10 +6222,10 @@
             "reliability": 0
           },
           "away": {
-            "attack": -0.302,
-            "defense": 0.056,
+            "attack": -0.297,
+            "defense": 0.055,
             "games": 2,
-            "reliability": 0.287
+            "reliability": 0.282
           }
         },
         "componentXg": {
@@ -6269,7 +6269,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 39.8
+          "probability": 39.7
         },
         {
           "name": "Double chance",
@@ -6279,7 +6279,7 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 51.6
+          "probability": 51.5
         },
         {
           "name": "Over / Under 1.5",
@@ -6332,20 +6332,20 @@
       },
       "oneXTwo": {
         "home": 47.8,
-        "draw": 24.6,
+        "draw": 24.5,
         "away": 27.6
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.46093784760890655,
-          "form": 0.23857335986241052,
-          "current": 0.16629010261520966,
-          "elo": 0.1341986899134733
+          "strength": 0.46208591350326955,
+          "form": 0.23804613906976418,
+          "current": 0.16533500650816313,
+          "elo": 0.13453294091880316
         },
         "stage": 0.417,
         "matchupReliability": 0.566,
-        "currentFormEvidence": 0.501,
+        "currentFormEvidence": 0.496,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -6407,7 +6407,7 @@
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 75.4
+          "probability": 75.5
         },
         {
           "name": "Draw no bet",
@@ -6422,12 +6422,12 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 59.3
+          "probability": 59.4
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 63.1
+          "probability": 63
         },
         {
           "name": "Both teams to score",
@@ -6461,25 +6461,25 @@
       "away": "FC Schalke 04",
       "xg": {
         "home": 2.83,
-        "away": 1.17
+        "away": 1.16
       },
       "oneXTwo": {
         "home": 71.4,
-        "draw": 15.9,
+        "draw": 16,
         "away": 12.6
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4756859349701477,
-          "form": 0.22196266582660046,
-          "current": 0.16634827248911072,
-          "elo": 0.13600312671414128
+          "strength": 0.47701323540294954,
+          "form": 0.2213669747025032,
+          "current": 0.1652371753804116,
+          "elo": 0.13638261451413564
         },
         "stage": 0.333,
         "matchupReliability": 0.373,
-        "currentFormEvidence": 0.462,
-        "currentXgEvidence": 0.085,
+        "currentFormEvidence": 0.456,
+        "currentXgEvidence": 0.083,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -6489,9 +6489,9 @@
           },
           "away": {
             "attack": 0.009,
-            "defense": 0.071,
+            "defense": 0.07,
             "games": 1,
-            "reliability": 0.169
+            "reliability": 0.166
           }
         },
         "componentXg": {
@@ -6500,8 +6500,8 @@
             "away": 1.07
           },
           "form": {
-            "home": 3.34,
-            "away": 1.35
+            "home": 3.33,
+            "away": 1.34
           },
           "current": {
             "home": 3.01,
@@ -6550,22 +6550,22 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 91.2
+          "probability": 91.1
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 76.1
+          "probability": 76
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Over 3.5",
-          "probability": 56.5
+          "probability": 56.3
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 65.1
+          "probability": 65
         },
         {
           "name": "Correct score",
@@ -6575,12 +6575,12 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 77.4
+          "probability": 77.3
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 68.8
+          "probability": 68.7
         }
       ]
     },
@@ -6593,38 +6593,38 @@
       "home": "US Sassuolo Calcio",
       "away": "AC Milan",
       "xg": {
-        "home": 1.59,
+        "home": 1.58,
         "away": 1.45
       },
       "oneXTwo": {
-        "home": 40.3,
+        "home": 40.1,
         "draw": 25.4,
-        "away": 34.3
+        "away": 34.4
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4218246154226477,
-          "form": 0.2430703841400474,
-          "current": 0.2098954710559552,
-          "elo": 0.12520952938134972
+          "strength": 0.4232236617009487,
+          "form": 0.2425063711628993,
+          "current": 0.20864516107420064,
+          "elo": 0.1256248060619514
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.502,
-        "currentXgEvidence": 0.498,
+        "currentFormEvidence": 0.497,
+        "currentXgEvidence": 0.492,
         "currentXgSignal": {
           "home": {
             "attack": 0.006,
             "defense": -0.027,
             "games": 3,
-            "reliability": 0.446
+            "reliability": 0.44
           },
           "away": {
-            "attack": -0.032,
-            "defense": -0.162,
+            "attack": -0.031,
+            "defense": -0.161,
             "games": 5,
-            "reliability": 0.55
+            "reliability": 0.544
           }
         },
         "componentXg": {
@@ -6637,7 +6637,7 @@
             "away": 1.46
           },
           "current": {
-            "home": 1.78,
+            "home": 1.77,
             "away": 1.46
           },
           "elo": {
@@ -6668,7 +6668,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 40.3
+          "probability": 40.1
         },
         {
           "name": "Double chance",
@@ -6678,27 +6678,27 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 54
+          "probability": 53.8
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 81.3
+          "probability": 81.2
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 58.5
+          "probability": 58.4
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 63.9
+          "probability": 64
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 61.6
+          "probability": 61.5
         },
         {
           "name": "Correct score",
@@ -6708,7 +6708,7 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 52.9
+          "probability": 53.1
         },
         {
           "name": "Away team goals",
@@ -6726,25 +6726,25 @@
       "home": "Real Betis Balompié",
       "away": "CA Osasuna",
       "xg": {
-        "home": 1.74,
+        "home": 1.75,
         "away": 1.06
       },
       "oneXTwo": {
-        "home": 52.6,
+        "home": 52.7,
         "draw": 25,
         "away": 22.4
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4295543045916171,
-          "form": 0.2626504887053756,
-          "current": 0.17669949243515615,
-          "elo": 0.13109571426785116
+          "strength": 0.4305780751377045,
+          "form": 0.26220656179128055,
+          "current": 0.17580720418428528,
+          "elo": 0.1314081588867296
         },
         "stage": 0.575,
         "matchupReliability": 0.623,
-        "currentFormEvidence": 0.56,
+        "currentFormEvidence": 0.555,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -6801,7 +6801,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 52.6
+          "probability": 52.7
         },
         {
           "name": "Double chance",
@@ -6811,7 +6811,7 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 70.1
+          "probability": 70.2
         },
         {
           "name": "Over / Under 1.5",
@@ -6841,7 +6841,7 @@
         {
           "name": "Home team goals",
           "selection": "Over 1.5",
-          "probability": 52
+          "probability": 52.1
         },
         {
           "name": "Away team goals",
@@ -6870,27 +6870,27 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.43026097662627233,
-          "form": 0.2411076511956347,
-          "current": 0.20091769112475374,
-          "elo": 0.12771368105333913
+          "strength": 0.43169534668852705,
+          "form": 0.2405308287118614,
+          "current": 0.1996343817630876,
+          "elo": 0.12813944283652398
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.503,
-        "currentXgEvidence": 0.388,
+        "currentFormEvidence": 0.498,
+        "currentXgEvidence": 0.383,
         "currentXgSignal": {
           "home": {
             "attack": -0.035,
-            "defense": -0.056,
+            "defense": -0.055,
             "games": 2,
-            "reliability": 0.365
+            "reliability": 0.36
           },
           "away": {
             "attack": 0.028,
-            "defense": -0.314,
+            "defense": -0.31,
             "games": 3,
-            "reliability": 0.411
+            "reliability": 0.405
           }
         },
         "componentXg": {
@@ -6899,12 +6899,12 @@
             "away": 1.27
           },
           "form": {
-            "home": 1.63,
-            "away": 1.88
+            "home": 1.62,
+            "away": 1.87
           },
           "current": {
-            "home": 1.52,
-            "away": 1.64
+            "home": 1.51,
+            "away": 1.63
           },
           "elo": {
             "home": 1.34,
@@ -6949,22 +6949,22 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 79
+          "probability": 78.8
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 55
+          "probability": 54.8
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 67.3
+          "probability": 67.6
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 58.9
+          "probability": 58.7
         },
         {
           "name": "Correct score",
@@ -6974,12 +6974,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 60.2
+          "probability": 60.3
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 77.9
+          "probability": 77.8
         }
       ]
     },
@@ -7003,14 +7003,14 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4607510575198945,
-          "form": 0.23865913857883342,
-          "current": 0.1664454965588206,
-          "elo": 0.13414430734245147
+          "strength": 0.46189820387934605,
+          "form": 0.23813234005979286,
+          "current": 0.1654911654289574,
+          "elo": 0.1344782906319036
         },
         "stage": 0.417,
         "matchupReliability": 0.4,
-        "currentFormEvidence": 0.502,
+        "currentFormEvidence": 0.496,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -7082,22 +7082,22 @@
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 75.2
+          "probability": 75.3
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Under 2.5",
-          "probability": 50.3
+          "probability": 50.2
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 72.2
+          "probability": 72.1
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 54.9
+          "probability": 55
         },
         {
           "name": "Correct score",
@@ -7107,12 +7107,12 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 61.6
+          "probability": 61.5
         },
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 73.6
+          "probability": 73.7
         }
       ]
     },
@@ -7129,22 +7129,22 @@
         "away": 1.05
       },
       "oneXTwo": {
-        "home": 49.6,
+        "home": 49.5,
         "draw": 26.4,
         "away": 24.1
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.41614295212427493,
-          "form": 0.2651013552485886,
-          "current": 0.19175299014431588,
-          "elo": 0.12700270248282053
+          "strength": 0.41732191051479284,
+          "form": 0.2646335160870109,
+          "current": 0.19068206450523162,
+          "elo": 0.12736250889296455
         },
         "stage": 0.575,
         "matchupReliability": 0.445,
-        "currentFormEvidence": 0.556,
-        "currentXgEvidence": 0.169,
+        "currentFormEvidence": 0.551,
+        "currentXgEvidence": 0.167,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -7153,10 +7153,10 @@
             "reliability": 0
           },
           "away": {
-            "attack": -0.344,
-            "defense": 0.075,
+            "attack": -0.338,
+            "defense": 0.074,
             "games": 2,
-            "reliability": 0.339
+            "reliability": 0.333
           }
         },
         "componentXg": {
@@ -7166,11 +7166,11 @@
           },
           "form": {
             "home": 1.53,
-            "away": 0.75
+            "away": 0.76
           },
           "current": {
             "home": 1.54,
-            "away": 0.85
+            "away": 0.86
           },
           "elo": {
             "home": 1.79,
@@ -7200,7 +7200,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 49.6
+          "probability": 49.5
         },
         {
           "name": "Double chance",
@@ -7210,27 +7210,27 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 67.3
+          "probability": 67.2
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 74.9
+          "probability": 75
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Under 2.5",
-          "probability": 50.7
+          "probability": 50.6
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 72.6
+          "probability": 72.5
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 52.5
+          "probability": 52.6
         },
         {
           "name": "Correct score",
@@ -7245,7 +7245,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 64.9
+          "probability": 65
         }
       ]
     },
@@ -7262,22 +7262,22 @@
         "away": 1.13
       },
       "oneXTwo": {
-        "home": 43.4,
+        "home": 43.5,
         "draw": 27.7,
-        "away": 28.9
+        "away": 28.8
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4428465981834929,
-          "form": 0.23798910330549808,
-          "current": 0.1877148474372967,
-          "elo": 0.13144945107371228
+          "strength": 0.44413627249280524,
+          "form": 0.2374403055583171,
+          "current": 0.18659115890208414,
+          "elo": 0.1318322630467936
         },
         "stage": 0.417,
         "matchupReliability": 0.404,
-        "currentFormEvidence": 0.502,
-        "currentXgEvidence": 0.242,
+        "currentFormEvidence": 0.496,
+        "currentXgEvidence": 0.239,
         "currentXgSignal": {
           "home": {
             "attack": 0,
@@ -7287,9 +7287,9 @@
           },
           "away": {
             "attack": 0.076,
-            "defense": 0.143,
+            "defense": 0.141,
             "games": 4,
-            "reliability": 0.484
+            "reliability": 0.478
           }
         },
         "componentXg": {
@@ -7298,11 +7298,11 @@
             "away": 1.15
           },
           "form": {
-            "home": 1.13,
+            "home": 1.14,
             "away": 1.18
           },
           "current": {
-            "home": 1.26,
+            "home": 1.27,
             "away": 1.18
           },
           "elo": {
@@ -7333,7 +7333,7 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 43.4
+          "probability": 43.5
         },
         {
           "name": "Double chance",
@@ -7343,12 +7343,12 @@
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 60
+          "probability": 60.1
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 73.4
+          "probability": 73.5
         },
         {
           "name": "Over / Under 2.5",
@@ -7358,7 +7358,7 @@
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 74.3
+          "probability": 74.2
         },
         {
           "name": "Both teams to score",
@@ -7373,7 +7373,7 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 57.8
+          "probability": 57.7
         },
         {
           "name": "Away team goals",
@@ -7402,14 +7402,14 @@
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4507226183205556,
-          "form": 0.24328933630081076,
-          "current": 0.16814660785286692,
-          "elo": 0.13784143752576686
+          "strength": 0.45186093048289744,
+          "form": 0.2427609976808558,
+          "current": 0.16718851203209323,
+          "elo": 0.13818955980415376
         },
         "stage": 0.417,
         "matchupReliability": 0.404,
-        "currentFormEvidence": 0.502,
+        "currentFormEvidence": 0.496,
         "currentXgEvidence": 0,
         "currentXgSignal": {
           "home": {
@@ -7435,7 +7435,7 @@
             "away": 1.67
           },
           "current": {
-            "home": 1.28,
+            "home": 1.29,
             "away": 1.6
           },
           "elo": {
@@ -7476,7 +7476,7 @@
         {
           "name": "Draw no bet",
           "selection": "Away",
-          "probability": 55.4
+          "probability": 55.3
         },
         {
           "name": "Over / Under 1.5",
@@ -7506,7 +7506,7 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 60.6
+          "probability": 60.5
         },
         {
           "name": "Away team goals",
@@ -7528,34 +7528,34 @@
         "away": 1.36
       },
       "oneXTwo": {
-        "home": 36.6,
-        "draw": 27.2,
+        "home": 36.7,
+        "draw": 27.1,
         "away": 36.2
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.4278518789503577,
-          "form": 0.2416959489460123,
-          "current": 0.20345357968003489,
-          "elo": 0.1269985924235949
+          "strength": 0.42928185053191464,
+          "form": 0.241121501611038,
+          "current": 0.202173599244294,
+          "elo": 0.12742304861275314
         },
         "stage": 0.417,
         "matchupReliability": 0.574,
-        "currentFormEvidence": 0.504,
-        "currentXgEvidence": 0.418,
+        "currentFormEvidence": 0.498,
+        "currentXgEvidence": 0.412,
         "currentXgSignal": {
           "home": {
-            "attack": -0.081,
-            "defense": 0.117,
+            "attack": -0.08,
+            "defense": 0.115,
             "games": 3,
-            "reliability": 0.399
+            "reliability": 0.393
           },
           "away": {
-            "attack": -0.039,
-            "defense": 0.027,
+            "attack": -0.038,
+            "defense": 0.026,
             "games": 3,
-            "reliability": 0.436
+            "reliability": 0.431
           }
         },
         "componentXg": {
@@ -7599,17 +7599,17 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 36.6
+          "probability": 36.7
         },
         {
           "name": "Double chance",
           "selection": "12",
-          "probability": 72.8
+          "probability": 72.9
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 50.2
+          "probability": 50.3
         },
         {
           "name": "Over / Under 1.5",
@@ -7619,17 +7619,17 @@
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 51.2
+          "probability": 51.3
         },
         {
           "name": "Over / Under 3.5",
           "selection": "Under 3.5",
-          "probability": 70.9
+          "probability": 70.8
         },
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 56
+          "probability": 56.1
         },
         {
           "name": "Correct score",
@@ -7639,7 +7639,7 @@
         {
           "name": "Home team goals",
           "selection": "Under 1.5",
-          "probability": 60.4
+          "probability": 60.3
         },
         {
           "name": "Away team goals",
@@ -7658,37 +7658,37 @@
       "away": "Sevilla FC",
       "xg": {
         "home": 1.66,
-        "away": 1.13
+        "away": 1.14
       },
       "oneXTwo": {
-        "home": 49.1,
+        "home": 49,
         "draw": 25.7,
-        "away": 25.3
+        "away": 25.4
       },
       "confidence": "Early-season model",
       "model": {
         "weights": {
-          "strength": 0.3987732293366659,
-          "form": 0.2680244874447951,
-          "current": 0.21150064789099013,
-          "elo": 0.12170163532754888
+          "strength": 0.4000900372478362,
+          "form": 0.2675367465817891,
+          "current": 0.210269704125905,
+          "elo": 0.12210351204446956
         },
         "stage": 0.575,
         "matchupReliability": 0.612,
-        "currentFormEvidence": 0.545,
-        "currentXgEvidence": 0.419,
+        "currentFormEvidence": 0.539,
+        "currentXgEvidence": 0.413,
         "currentXgSignal": {
           "home": {
-            "attack": -0.109,
-            "defense": 0.231,
+            "attack": -0.108,
+            "defense": 0.228,
             "games": 3,
-            "reliability": 0.463
+            "reliability": 0.457
           },
           "away": {
-            "attack": -0.271,
-            "defense": -0.057,
+            "attack": -0.267,
+            "defense": -0.056,
             "games": 2,
-            "reliability": 0.375
+            "reliability": 0.369
           }
         },
         "componentXg": {
@@ -7702,7 +7702,7 @@
           },
           "current": {
             "home": 1.63,
-            "away": 0.96
+            "away": 0.97
           },
           "elo": {
             "home": 1.8,
@@ -7732,27 +7732,27 @@
         {
           "name": "Match result (1X2)",
           "selection": "Home",
-          "probability": 49.1
+          "probability": 49
         },
         {
           "name": "Double chance",
           "selection": "1X",
-          "probability": 74.7
+          "probability": 74.6
         },
         {
           "name": "Draw no bet",
           "selection": "Home",
-          "probability": 66
+          "probability": 65.9
         },
         {
           "name": "Over / Under 1.5",
           "selection": "Over 1.5",
-          "probability": 77.5
+          "probability": 77.6
         },
         {
           "name": "Over / Under 2.5",
           "selection": "Over 2.5",
-          "probability": 53
+          "probability": 53.1
         },
         {
           "name": "Over / Under 3.5",
@@ -7762,7 +7762,7 @@
         {
           "name": "Both teams to score",
           "selection": "Yes",
-          "probability": 55.7
+          "probability": 55.8
         },
         {
           "name": "Correct score",
@@ -7777,7 +7777,7 @@
         {
           "name": "Away team goals",
           "selection": "Over 0.5",
-          "probability": 67.8
+          "probability": 67.9
         }
       ]
     }
