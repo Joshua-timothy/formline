@@ -1,8 +1,9 @@
-const root = document.querySelector("#fixtures");
+const root = document.querySelector("#fixtureList");
 const template = document.querySelector("#card");
 const nav = document.querySelector("#leagueNav");
 const dateInput = document.querySelector("#date");
 const dialog = document.querySelector("#dialog");
+const filterDialog = document.querySelector("#filterDialog");
 const notice = document.querySelector("#notice");
 const STALE_AFTER_HOURS = 30;
 
@@ -111,8 +112,11 @@ function openFixture(fixture) {
     ? ` · backtest: ${validation.matches} matches, Brier ${validation.brier}, ECE ${validation.ece}`
     : "";
   const restText = rest ? ` · rest: ${rest.home}d / ${rest.away}d` : "";
+  const weightText = Object.entries(weights)
+    .map(([name, value]) => `${name} ${Math.round(value * 100)}%`)
+    .join(" · ");
   document.querySelector("#dScore").innerHTML =
-    `<small>EXPECTED GOALS</small><strong>${fixture.xg.home}<i>—</i>${fixture.xg.away}</strong><em>Blend: strength ${Math.round(weights.strength * 100)}% · form ${Math.round(weights.form * 100)}% · Elo ${Math.round(weights.elo * 100)}%${restText}${validationText}</em>`;
+    `<small>EXPECTED GOALS</small><strong>${fixture.xg.home}<i>—</i>${fixture.xg.away}</strong><em>Blend: ${weightText}${restText}${validationText}</em>`;
   document.querySelector("#dMarkets").innerHTML = fixture.markets
     .map(
       (item) =>
@@ -139,6 +143,24 @@ function renderNavigation() {
   });
 }
 
+function renderMobileNavigation() {
+  const mobileNav = document.querySelector("#mobileLeagueNav");
+  mobileNav.innerHTML =
+    `<button class="${league === "ALL" ? "selected" : ""}" data-id="ALL"><span>All leagues</span><b>${fixtureCount("ALL")}</b></button>` +
+    data.leagues
+      .map(
+        (item) =>
+          `<button class="${league === item.id ? "selected" : ""}" data-id="${item.id}"><span>${esc(item.name)}</span><b>${fixtureCount(item.id)}</b></button>`,
+      )
+      .join("");
+  mobileNav.querySelectorAll("button").forEach((button) => {
+    button.onclick = () => {
+      league = button.dataset.id;
+      renderMobileNavigation();
+    };
+  });
+}
+
 function renderFeatured(fixtures) {
   const feature = document.querySelector("#featured");
   const fixture = fixtures[0];
@@ -148,7 +170,7 @@ function renderFeatured(fixtures) {
   }
   const result = market(fixture, "Match result (1X2)");
   const goals = market(fixture, "Over / Under 2.5");
-  feature.innerHTML = `<div><label>NEXT ON THE BOARD</label><small>${esc(fixture.league)}</small><h2>${esc(fixture.home)} <i>vs</i> ${esc(fixture.away)}</h2><p>${formatDate(fixture.date)} · ${fixture.time || "TBC"} · A model-led preview of the next fixture in your selected view.</p><button id="feature">Explore match →</button></div><div class="lead"><small>LEADING OUTCOME</small><strong>${esc(result.selection)}</strong><b>${result.probability}%</b><hr style="--p:${result.probability}%"><p>O/U 2.5 <b>${esc(goals.selection)} · ${goals.probability}%</b></p></div>`;
+  feature.innerHTML = `<div class="featured-main"><p class="eyebrow">FEATURED FORECAST</p><div class="featured-title"><span>${esc(fixture.league)}</span><time>${formatDate(fixture.date)} · ${fixture.time || "TBC"}</time></div><h2>${esc(fixture.home)} <i>vs</i> ${esc(fixture.away)}</h2><p class="featured-copy">A closer look at the strongest signal in your selected fixture view.</p><button id="feature" type="button">Open full analysis <span>→</span></button></div><div class="lead"><p>LEADING OUTCOME</p><strong>${esc(result.selection)}</strong><b>${result.probability}%</b><hr style="--p:${result.probability}%"><small>O/U 2.5 <b>${esc(goals.selection)} · ${goals.probability}%</b></small></div>`;
   document.querySelector("#feature").onclick = () => openFixture(fixture);
 }
 
@@ -176,11 +198,8 @@ function renderFixtures(fixtures) {
       " model",
       "",
     );
-    const outcomes = document.createElement("div");
-    outcomes.className = "one-x-two";
-    outcomes.setAttribute("aria-label", "Match result probabilities");
+    const outcomes = card.querySelector(".one-x-two");
     outcomes.innerHTML = `<span><small>1</small><b>${probabilities.home}%</b></span><span><small>X</small><b>${probabilities.draw}%</b></span><span><small>2</small><b>${probabilities.away}%</b></span>`;
-    card.querySelector(".signals").before(outcomes);
     ["Over / Under 2.5", "Both teams to score", "Double chance"].forEach(
       (name) => {
         const item = market(fixture, name);
@@ -205,6 +224,10 @@ function render() {
   document.querySelector("#fixtureCount").textContent =
     `${fixtures.length} fixture${fixtures.length === 1 ? "" : "s"} in view`;
   renderFixtures(fixtures);
+  renderMobileNavigation();
+  document.querySelectorAll("[data-mobile-view]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.mobileView === quick);
+  });
 }
 
 function validateFeed(feed) {
@@ -241,10 +264,12 @@ function showFeedStatus(feed) {
     ? "Some sources need attention"
     : "All sources healthy";
   sourceStatus.classList.toggle("warning", failed.length > 0 || stale);
-  document.querySelector("#updatePill").textContent =
+  const updatePill = document.querySelector("#updatePill");
+  updatePill.textContent =
     `Updated ${new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(feed.generatedAt))}`;
+  updatePill.classList.toggle("warning", failed.length > 0 || stale);
   document.querySelector("#quality").innerHTML =
-    `<div><small>FORECASTS LIVE</small><b>${feed.predictions.length}</b><span>next 14 days</span></div><div><small>VALIDATION</small><b>${averageBrier}</b><span>walk-forward Brier</span></div><div><small>CALIBRATION</small><b>${averageEce}</b><span>${calibrated.length ? "expected calibration error" : "next successful refresh"}</span></div>`;
+    `<div><small>${stale ? "REFRESH NEEDED" : "FORECASTS LIVE"}</small><b>${feed.predictions.length}</b><span>next 14 days</span></div><div><small>VALIDATION</small><b>${averageBrier}</b><span>walk-forward Brier</span></div><div><small>CALIBRATION</small><b>${averageEce}</b><span>${calibrated.length ? "expected calibration error" : "next successful refresh"}</span></div>`;
   document.querySelector("#methodText").textContent =
     feed.methodology || "Methodology details are unavailable for this refresh.";
   const messages = [];
@@ -303,3 +328,31 @@ document.querySelector("#close").onclick = () => dialog.close();
 dialog.onclick = (event) => {
   if (event.target === dialog) dialog.close();
 };
+document.querySelector("#openFilters").onclick = () => filterDialog.showModal();
+document.querySelector("#openLeagues").onclick = () => filterDialog.showModal();
+document.querySelector("#closeFilters").onclick = () => filterDialog.close();
+document.querySelector("#applyFilters").onclick = () => {
+  filterDialog.close();
+  render();
+  document.querySelector("#fixtures").scrollIntoView({ behavior: "smooth", block: "start" });
+};
+document.querySelector("#mobileReset").onclick = () => {
+  league = "ALL";
+  quick = "all";
+  dateInput.value = "";
+  renderMobileNavigation();
+};
+filterDialog.onclick = (event) => {
+  if (event.target === filterDialog) filterDialog.close();
+};
+document.querySelectorAll("[data-mobile-view]").forEach((button) => {
+  button.onclick = () => {
+    quick = button.dataset.mobileView;
+    dateInput.value = "";
+    document
+      .querySelectorAll("[data-quick]")
+      .forEach((item) => item.classList.toggle("active", item.dataset.quick === quick));
+    render();
+    document.querySelector("#fixtures").scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+});
