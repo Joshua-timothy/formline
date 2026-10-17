@@ -1,3 +1,7 @@
+const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+const savedTheme = localStorage.getItem("formline-theme") || preferredTheme;
+document.documentElement.dataset.theme = savedTheme;
+document.head.insertAdjacentHTML("beforeend", '<link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Formline">');
 const root = document.querySelector("#fixtureList");
 const template = document.querySelector("#card");
 const nav = document.querySelector("#leagueNav");
@@ -6,6 +10,25 @@ const dialog = document.querySelector("#dialog");
 const filterDialog = document.querySelector("#filterDialog");
 const notice = document.querySelector("#notice");
 const STALE_AFTER_HOURS = 30;
+
+const themeToggle = document.createElement("button");
+themeToggle.id = "themeToggle";
+themeToggle.type = "button";
+themeToggle.setAttribute("aria-label", "Switch colour theme");
+const renderThemeToggle = () => {
+  const dark = document.documentElement.dataset.theme === "dark";
+  themeToggle.textContent = dark ? "☀" : "◐";
+  themeToggle.title = dark ? "Use light mode" : "Use dark mode";
+  themeToggle.setAttribute("aria-pressed", String(dark));
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? "#102117" : "#fbfcf9");
+};
+renderThemeToggle();
+themeToggle.onclick = () => {
+  document.documentElement.dataset.theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  localStorage.setItem("formline-theme", document.documentElement.dataset.theme);
+  renderThemeToggle();
+};
+document.querySelector(".topbar-actions").prepend(themeToggle);
 
 let data;
 let league = "ALL";
