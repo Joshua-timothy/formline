@@ -227,6 +227,26 @@ function finalScore(match) {
   return score;
 }
 
+function recentForm(matches, team, asOf, count = 5) {
+  const id = teamId(team);
+  return matches
+    .filter(
+      (match) =>
+        match.date < asOf &&
+        finalScore(match) &&
+        (teamId(match.team1) === id || teamId(match.team2) === id),
+    )
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, count)
+    .map((match) => {
+      const [homeGoals, awayGoals] = finalScore(match);
+      const isHome = teamId(match.team1) === id;
+      const scored = isHome ? homeGoals : awayGoals;
+      const conceded = isHome ? awayGoals : homeGoals;
+      return scored > conceded ? "W" : scored === conceded ? "D" : "L";
+    });
+}
+
 function performanceScore(match) {
   const score = finalScore(match);
   if (!score) return null;
@@ -1035,7 +1055,7 @@ function probabilityScore(predicted, actual) {
   );
 }
 
-function predict(match, league, stats, diagnostic, odds) {
+function predict(match, league, stats, diagnostic, odds, history) {
   const adaptive = adaptiveWeights(
     diagnostic?.weights ?? {
       strength: 0.55,
@@ -1112,6 +1132,10 @@ function predict(match, league, stats, diagnostic, odds) {
     time: match.time ?? "TBC",
     home: match.team1,
     away: match.team2,
+    form: {
+      home: recentForm(history, match.team1, match.date),
+      away: recentForm(history, match.team2, match.date),
+    },
     xg: { home: Number(xg.home.toFixed(2)), away: Number(xg.away.toFixed(2)) },
     oneXTwo: {
       home: Math.round(resultHome * 1000) / 10,
@@ -1419,7 +1443,7 @@ for (const [id, name, code, oddsDivision] of leagues) {
       id,
       name,
       predictions: upcoming.map((match) =>
-        predict(match, { id, name }, stats, diagnostic, odds),
+        predict(match, { id, name }, stats, diagnostic, odds, history),
       ),
       diagnostic,
       error: null,

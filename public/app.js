@@ -213,6 +213,31 @@ function renderFixtures(fixtures) {
       `${formatDate(fixture.date)} · ${fixture.time || "TBC"}`;
     card.querySelector(".home").textContent = fixture.home;
     card.querySelector(".away").textContent = fixture.away;
+    const form = document.createElement("div");
+    form.className = "recent-form";
+    const addForm = (label, results, alignEnd = false) => {
+      const teamForm = document.createElement("div");
+      teamForm.className = `form-team${alignEnd ? " form-team-away" : ""}`;
+      const caption = document.createElement("small");
+      caption.textContent = label;
+      const outcomes = document.createElement("div");
+      outcomes.className = "form-results";
+      (results ?? []).forEach((outcome) => {
+        const result = document.createElement("span");
+        result.className = `form-result form-${outcome.toLowerCase()}`;
+        result.textContent = outcome;
+        result.setAttribute(
+          "aria-label",
+          outcome === "W" ? "Win" : outcome === "D" ? "Draw" : "Loss",
+        );
+        outcomes.append(result);
+      });
+      teamForm.append(caption, outcomes);
+      form.append(teamForm);
+    };
+    addForm("Home form · last 5", fixture.form?.home);
+    addForm("Away form · last 5", fixture.form?.away, true);
+    card.querySelector(".teams").insertAdjacentElement("afterend", form);
     card.querySelector(".result").textContent =
       `${result.selection} · ${result.probability}%`;
     card.querySelector(".xg").textContent =
