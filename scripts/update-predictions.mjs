@@ -153,9 +153,22 @@ function oddsValues(row) {
 }
 
 function sourceXg(row) {
-  const values = [Number(row.HxG), Number(row.AxG)];
+  const raw = [row.HxG, row.AxG].map((value) => String(value ?? "").trim());
+  if (raw.some((value) => value === "")) return null;
+  const values = raw.map(Number);
   return values.every(
     (value) => Number.isFinite(value) && value >= 0 && value <= 8,
+  )
+    ? values
+    : null;
+}
+
+function sourceScore(row) {
+  const raw = [row.FTHG, row.FTAG].map((value) => String(value ?? "").trim());
+  if (raw.some((value) => value === "")) return null;
+  const values = raw.map(Number);
+  return values.every(
+    (value) => Number.isInteger(value) && value >= 0 && value <= 20,
   )
     ? values
     : null;
@@ -169,8 +182,9 @@ async function getOdds(division, seasonKey) {
     throw new Error(`${division} ${seasonKey}: odds HTTP ${response.status}`);
   return parseCsv(await response.text()).flatMap((row) => {
     const date = oddsDate(row.Date),
-      probabilities = oddsValues(row);
-    if (!date || !row.HomeTeam || !row.AwayTeam || !probabilities) return [];
+      probabilities = oddsValues(row),
+      score = sourceScore(row);
+    if (!date || !row.HomeTeam || !row.AwayTeam) return [];
     return [
       {
         date,
@@ -178,6 +192,7 @@ async function getOdds(division, seasonKey) {
         away: teamKey(row.AwayTeam),
         probabilities,
         xg: sourceXg(row),
+        score,
       },
     ];
   });
@@ -211,8 +226,15 @@ function marketProbabilities(match, index) {
 
 function enrichMatches(matches, index) {
   return matches.map((match) => {
-    const xg = sourceRecord(match, index)?.xg;
-    return xg ? { ...match, sourceXg: xg } : match;
+    const source = sourceRecord(match, index);
+    if (!source) return match;
+    const enriched = source.xg ? { ...match, sourceXg: source.xg } : match;
+    // The CSV source is updated with final scores independently of the fixture
+    // feed. Prefer it for a matched completed match, while retaining the
+    // fixture feed as a fallback whenever a source match cannot be identified.
+    return source.score
+      ? { ...enriched, score: { ...(match.score ?? {}), ft: source.score } }
+      : enriched;
   });
 }
 
@@ -238,12 +260,18 @@ function recentForm(matches, team, asOf, count = 5) {
     )
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, count)
+    .reverse()
     .map((match) => {
       const [homeGoals, awayGoals] = finalScore(match);
       const isHome = teamId(match.team1) === id;
       const scored = isHome ? homeGoals : awayGoals;
       const conceded = isHome ? awayGoals : homeGoals;
-      return scored > conceded ? "W" : scored === conceded ? "D" : "L";
+      return {
+        result: scored > conceded ? "W" : scored === conceded ? "D" : "L",
+        date: match.date,
+        opponent: isHome ? match.team2 : match.team1,
+        score: `${scored}–${conceded}`,
+      };
     });
 }
 

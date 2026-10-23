@@ -222,14 +222,18 @@ function renderFixtures(fixtures) {
       caption.textContent = label;
       const outcomes = document.createElement("div");
       outcomes.className = "form-results";
-      (results ?? []).forEach((outcome) => {
+      (results ?? []).forEach((entry) => {
+        const outcome = typeof entry === "string" ? entry : entry.result;
         const result = document.createElement("span");
         result.className = `form-result form-${outcome.toLowerCase()}`;
         result.textContent = outcome;
-        result.setAttribute(
-          "aria-label",
-          outcome === "W" ? "Win" : outcome === "D" ? "Draw" : "Loss",
-        );
+        const resultLabel =
+          outcome === "W" ? "Win" : outcome === "D" ? "Draw" : "Loss";
+        const detail = entry?.opponent
+          ? `${resultLabel}: ${entry.score} vs ${entry.opponent} on ${formatDate(entry.date)}`
+          : resultLabel;
+        result.setAttribute("aria-label", detail);
+        result.title = detail;
         outcomes.append(result);
       });
       teamForm.append(caption, outcomes);
